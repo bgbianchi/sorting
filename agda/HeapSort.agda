@@ -22,7 +22,7 @@ open import Permutation.Equivalence A
 open import Permutation.Concatenation A
 open import Relation.Binary
 open import Relation.Binary.PropositionalEquality hiding (trans)
-open import SNat
+open import SNat hiding (refl≤ ; subtyping ; _+_ ; _≤′_)
 open import Sorting _≤_
 
 open DecTotalOrder decTotalOrder hiding (refl)
