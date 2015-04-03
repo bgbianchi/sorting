@@ -1,8 +1,8 @@
 {-# OPTIONS --sized-types #-}
-module BBHeap.Height {A : Set} (_≤_ : A → A → Set) where
+module BBHeap.Height {A : Set} (_≤_ : A → A → Set)  where
 
-open import BBHeap _≤_
-open import Bound _≤_
+open import BBHeap _≤_ 
+open import Bound _≤_ 
 open import Data.Sum renaming (_⊎_ to _∨_)
 open import Relation.Binary.PropositionalEquality
 open import SNat

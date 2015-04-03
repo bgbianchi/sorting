@@ -14,8 +14,6 @@ open import Data.List
 open import Data.Nat renaming (_≤_ to _≤ₙ_)
 open import Data.Nat.Properties
 open import Function using (_∘_)
-open import Induction.Nat
-open import Induction.WellFounded 
 open import OList _≤_
 open import Permutation A
 open import Permutation.Equivalence A
@@ -27,15 +25,15 @@ open import Sorting _≤_
 
 open DecTotalOrder decTotalOrder hiding (refl)
 
+transLeB : {b b' b'' : Bound} → LeB b b' → LeB b' b'' → LeB b b''
+transLeB lebx _ = lebx
+transLeB (lexy x≤y) (lexy y≤z) = lexy (trans≤ x≤y y≤z)
+
 refl≤ : {x : A} → x ≤ x
 refl≤ {x} 
     with tot≤ x x
 ... | inj₁ x≤x = x≤x
 ... | inj₂ x≤x = x≤x 
-
-transLeB : {b b' b'' : Bound} → LeB b b' → LeB b' b'' → LeB b b''
-transLeB lebx _ = lebx
-transLeB (lexy x≤y) (lexy y≤z) = lexy (trans≤ x≤y y≤z)
 
 subtyping : {b b' : Bound} → LeB b' b → BBHeap b → BBHeap b'
 subtyping _ leaf = leaf 
@@ -72,6 +70,8 @@ subtyping⋗l b''≤b (⋗nd b≤x b'≤x' l⋘r l'⋘r' l≃r l'≃r' l⋗l') =
 
 subtyping⋗ : {b b' b'' b''' : Bound}{h : BBHeap b}{h' : BBHeap b'} → (b''≤b : LeB b'' b) → (b'''≤b' : LeB b''' b') → h ⋗ h' → subtyping b''≤b h ⋗ subtyping b'''≤b' h' 
 subtyping⋗ b''≤b b'''≤b' h⋗h' = subtyping⋗r b'''≤b' (subtyping⋗l b''≤b h⋗h')
+
+--
 
 mutual
   insert : {b : Bound}{x : A} → LeB b (val x) → BBHeap b → BBHeap b
@@ -145,10 +145,8 @@ mutual
 
 convert : {b : Bound}(h : BBHeap b) → BHeap b
 convert leaf = lf
-convert (left {l = l} {r = r} b≤x _) = 
-                              nd b≤x (convert l) (convert r) 
-convert (right {l = l} {r = r} b≤x _) = 
-                              nd b≤x (convert l) (convert r) 
+convert (left {l = l} {r = r} b≤x _) = nd b≤x (convert l) (convert r) 
+convert (right {l = l} {r = r} b≤x _) = nd b≤x (convert l) (convert r) 
 
 +id : (n : ℕ) → n + zero ≡  n
 +id zero = refl
@@ -181,15 +179,9 @@ lemma-merge# (nd {x = y} x≤y l r) (nd {x = y'} x≤y' l' r')
 lemma-merge≤′ : {b : Bound}{x : A}(b≤x : LeB b (val x))(l r : BHeap (val x)) → suc (# (merge l r)) ≤′ # (nd b≤x l r)
 lemma-merge≤′ b≤x l r rewrite lemma-merge# l r = ≤′-refl
 
-ii-acc : ∀ {b} {h} → Acc _<′_ (# {b} h) → Terminates h
-ii-acc (acc rs) = termination-proof (λ h' #h'<′#h → ii-acc (rs (# h') #h'<′#h))
-
-≺-wf : ∀ {b} h → Terminates {b} h 
-≺-wf = λ h → ii-acc (<-well-founded (# h)) 
-
 flatten : {b : Bound}(h : BHeap b) → Terminates h → OList b
 flatten lf _ = onil
-flatten (nd {x = x} b≤x l r) (termination-proof rs) = :< x  b≤x (flatten (merge l r) (rs (merge l r) (lemma-merge≤′ b≤x l r)))
+flatten (nd {x = x} b≤x l r) (termination-proof rs) = :< b≤x (flatten (merge l r) (rs (merge l r) (lemma-merge≤′ b≤x l r)))
 
 heapify : List A → BBHeap bot
 heapify [] = leaf
@@ -197,6 +189,8 @@ heapify (x ∷ xs) = insert {x = x} lebx (heapify xs)
 
 heapsort : List A → OList bot
 heapsort xs = flatten (convert (heapify xs)) (≺-wf (convert (heapify xs)))
+
+--
 
 theorem-heapsort-sorted : (xs : List A) → Sorted (forget (heapsort xs))
 theorem-heapsort-sorted = lemma-olist-sorted ∘ heapsort
@@ -259,11 +253,13 @@ lemma-insert-flatten' {x = x} b≤x (right {x = y} {l = l} {r = r} b≤y l⋙r) 
 theorem-heapsort∼ : (xs : List A) → xs ∼ forget (heapsort xs)
 theorem-heapsort∼ [] = ∼[]
 theorem-heapsort∼ (x ∷ xs) = lemma-trans∼ (lemma-trans∼ (∼x /head /head (lemma-trans∼ (theorem-heapsort∼ xs) (lemma-flatten-flatten' h' tₕ'))) (lemma-insert-flatten' lebx h)) (lemma-flatten'-flatten (hᵢ) tₕᵢ)
-  where     h = heapify xs
-            h' = convert h
-            tₕ' = ≺-wf h'
-            hᵢ = convert (insert lebx h)
-            tₕᵢ = ≺-wf hᵢ
+              where h = heapify xs
+                    h' = convert h
+                    tₕ' = ≺-wf h'
+                    hᵢ = convert (insert lebx h)
+                    tₕᵢ = ≺-wf hᵢ
+
+--
 
 heightₙ : {b : Bound} → BHeap b → ℕ
 heightₙ lf = zero

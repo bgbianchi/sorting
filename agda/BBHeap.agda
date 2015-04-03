@@ -1,8 +1,8 @@
 open import Data.Sum renaming (_⊎_ to _∨_)
 
-module BBHeap {A : Set} (_≤_ : A → A → Set) where
+module BBHeap {A : Set} (_≤_ : A → A → Set)  where
 
-open import Bound _≤_
+open import Bound _≤_ 
 
 mutual
   data BBHeap : Bound → Set where

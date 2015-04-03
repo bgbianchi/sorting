@@ -1,4 +1,4 @@
-module Bound {A : Set} (_≤_ : A → A → Set)  where
+module Bound {A : Set} (_≤_ : A → A → Set) where
 
 open import Data.List
 
