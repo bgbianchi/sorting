@@ -10,10 +10,14 @@ Formalization of some sorting algorithms in Agda
 - **agda\BHeap.agda** - Bounded heap and ordering definitions
 - **agda\Bound.agda** - Bound definition
 - **agda\Heapsort.agda** - Heapsort implementation. Correctness and efficiency proofs
+- **agda\InsertSort.agda** - Insertion sort implementations and correctness proofs
+- **agda\Mergesort.agda** - Mergesort implementation and correctness proof
 - **agda\OList.agda** - Ordered list definition and related lemmas
 - **agda\Permutation.agda** - Permutation definition
+- **agda\SList.agda** - Sized list definition
 - **agda\SLog.agda** - Binary logarithm definition and related lemmas
 - **agda\SNat.agda** - Sized natural numbers, ordering and related lemmas
+- **agda\SOList.agda** - Sized ordered list definition
 - **agda\Sorting.agda** - Order definition for simple lists
 
 ## Agda version ##
