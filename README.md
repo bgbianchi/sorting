@@ -5,7 +5,7 @@ Formalization of some sorting algorithms in Agda
 ## Source files ##
 - **hs\CBTree** - Complete binary trees in Haskell
 - **agda\BBHeap\Height.agda** - Dimensioning proofs for binary heaps
-- **agda\Permutation\*** - Permutation lemmas
+- **agda\Permutation\*** - Permutation lemmas and related definitions
 - **agda\BBHeap.agda** - Binary heap definition and related lemmas
 - **agda\BHeap.agda** - Bounded heap and ordering definitions
 - **agda\Bound.agda** - Bound definition
