@@ -1,7 +1,7 @@
 {-# OPTIONS --sized-types #-}
 open import Data.Sum renaming (_⊎_ to _∨_)
 
-module HeapSort {A : Set}
+module Heapsort {A : Set}
                   (_≤_ : A → A → Set) 
                   (tot≤ : (x y : A) → x ≤ y ∨ y ≤ x) 
                   (trans≤ : {x y z : A} → x ≤ y → y ≤ z → x ≤ z) where
