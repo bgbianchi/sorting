@@ -11,6 +11,12 @@ Formalization of some sorting algorithms in Agda
 - **Selection sort**
 - **Tree sort**
 
+## Agda version ##
+2.3.2.2
+
+## Agda standard library version ##
+0.7
+
 ## Source files ##
 - **hs\CBTree** - Complete binary trees in Haskell
 - **hs\BHeap** - Binary heaps in Haskell
@@ -41,9 +47,3 @@ Formalization of some sorting algorithms in Agda
 - **agda\SelectSort.agda** - 
 - **agda\Sorting.agda** - Order definition for simple lists
 - **agda\TreeSort.agda** - 
-
-## Agda version ##
-2.3.2.2
-
-## Agda standard library version ##
-0.7
