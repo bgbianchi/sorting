@@ -2,6 +2,15 @@
 
 Formalization of some sorting algorithms in Agda
 
+## Currently formalized algorithms ##
+- **Bubble sort**
+- **Heapsort**
+- **Insertion sort**
+- **Mergesort**
+- **Quicksort**
+- **Selection sort**
+- **Tree sort**
+
 ## Source files ##
 - **hs\CBTree** - Complete binary trees in Haskell
 - **agda\BBHeap\Height.agda** - Dimensioning proofs for binary heaps
