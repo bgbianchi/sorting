@@ -2,7 +2,7 @@ module BBSTree  {A : Set}
                      (_≤_ : A → A → Set)
                      (trans≤ : {x y z : A} → x ≤ y → y ≤ z → x ≤ z) where
 
-open import Bound2 _≤_
+open import Bound2 _≤_ trans≤
 open import Data.List
 open import List.Order _≤_ trans≤
 open import Sorting _≤_
