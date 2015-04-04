@@ -6,12 +6,20 @@ open import Data.List
 open import Sorting _≤_
 
 data _*≤_ : List A → A → Set where
-  lenx : {x : A} → [] *≤ x 
-  lecx : {x y : A}{ys : List A} → y ≤ x → ys *≤ x → (y ∷ ys) *≤ x
+  lenx : {x : A} 
+                   → [] *≤ x 
+  lecx : {x y : A}{ys : List A} 
+                   → y ≤ x 
+                   → ys *≤ x 
+                   → (y ∷ ys) *≤ x
 
 data _≤*_ : A → List A → Set where
-  genx : {x : A} → x ≤* [] 
-  gecx : {x y : A}{ys : List A} → x ≤ y → x ≤* ys → x ≤* (y ∷ ys)
+  genx : {x : A} 
+                   → x ≤* [] 
+  gecx : {x y : A}{ys : List A} 
+                   → x ≤ y 
+                   → x ≤* ys 
+                   → x ≤* (y ∷ ys)
 
 lemma-≤-*≤ : {x y : A}{xs : List A} → xs *≤ y → y ≤ x → xs *≤ x
 lemma-≤-*≤ lenx y≤x  = lenx
