@@ -32,7 +32,7 @@ Formalization of some sorting algorithms in Agda
 - **agda\SNat\Log.agda** - Binary logarithms based on sized natural numbers
 - **agda\SOList\*** - Many dependent sorted lists with size
 - **agda\SelectSort\Correctness\*** - Selection sort correctness proof
-- **agda\TreeSort\Correctness\*** - Tree sort correctness proof
+- **agda\TreeSort\Correctness\*** - Tree sort correctness proofs
 - **agda\BBHeap.agda** - Dependent binary heaps
 - **agda\BBSTree.agda** - Dependent binary search trees
 - **agda\BHeap.agda** - Dependent ordinary heaps
@@ -49,7 +49,7 @@ Formalization of some sorting algorithms in Agda
 - **agda\SList.agda** - Sized lists
 - **agda\SNat.agda** - Sized natural numbers
 - **agda\SelectSort.agda** - Selection sort algorithm
-- **agda\TreeSort.agda** - Tree sort algoritm
+- **agda\TreeSort.agda** - Tree sort algoritms
 
 ## Agda version ##
 2.3.2.2
