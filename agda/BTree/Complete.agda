@@ -1,7 +1,7 @@
 module BTree.Complete {A : Set} where
 
 open import BTree {A} 
-open import BTree.Equal {A}
+open import BTree.Equality {A}
 
 data Perfect : BTree → Set where
   plf : Perfect leaf
@@ -11,8 +11,8 @@ data Perfect : BTree → Set where
                    → Perfect (node x l r)
 
 data _⋗_ : BTree → BTree → Set where
-  ⋗leaf : (x : A) → node x leaf leaf ⋗ leaf
-  ⋗node : {l r l' r' : BTree}
+  ⋗lf : (x : A) → node x leaf leaf ⋗ leaf
+  ⋗nd : {l r l' r' : BTree}
                    (x x' : A) 
                    → l ⋗ r' 
                    → node x l r ⋗ node x' l' r'
@@ -44,14 +44,14 @@ data _⋙_ : BTree → BTree → Set where
                    → l ⋙ r
 
 data Complete : BTree → Set where 
-  cleaf : Complete leaf
-  cleft : {l r : BTree}
+  leaf : Complete leaf
+  left : {l r : BTree}
                    (x : A)
                    → Complete l
                    → Complete r
                    → l ⋘ r
                    → Complete (node x l r)
-  cright : {l r : BTree}
+  right : {l r : BTree}
                    (x : A)
                    → Complete l
                    → Complete r

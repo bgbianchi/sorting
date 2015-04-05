@@ -1,7 +1,7 @@
 module CBTree {A : Set} where
 
 open import BTree {A}
-open import BTree.Equal {A}
+open import BTree.Equality {A}
 
 data _⋗_ : BTree → BTree → Set where
   ⋗lf : (x : A) 
