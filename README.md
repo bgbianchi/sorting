@@ -54,5 +54,5 @@ Formalization of some sorting algorithms in Agda
 ## Agda version ##
 2.3.2.2
 
-## Agda standard library version ##
+## Standard library version ##
 0.7
