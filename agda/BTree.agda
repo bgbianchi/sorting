@@ -1,5 +1,3 @@
-open import Data.Sum renaming (_⊎_ to _∨_)
-
 module BTree {A : Set} where
 
 open import Data.List

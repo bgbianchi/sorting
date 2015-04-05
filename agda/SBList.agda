@@ -1,12 +1,10 @@
 {-# OPTIONS --sized-types #-}
-module SBList {A : Set}
-                  (_≤_ : A → A → Set)  
-                  (trans≤ : {x y z : A} → x ≤ y → y ≤ z → x ≤ z)  where
+module SBList {A : Set}(_≤_ : A → A → Set) where
 
-open import Bound2 _≤_ trans≤
+open import Bound.Total A
+open import Bound.Total.Order _≤_ 
 open import Data.List
 open import Data.Product
-open import Permutation A
 open import Size
 
 data SBList : {ι : Size} → Bound → Bound → Set where
@@ -31,9 +29,6 @@ unbound (cons x _ _ xs) = x ∷ unbound xs
 unbound× : {ι : Size}{b t b' t' : Bound} → SBList {ι} b t × SBList {ι} b' t' → List A × List A
 unbound×  (xs , ys) = (unbound xs , unbound ys)
 
-lemma-unbound-bound : (xs : List A) → xs ∼ unbound (bound xs)
-lemma-unbound-bound [] = ∼[]
-lemma-unbound-bound (x ∷ xs) = ∼x /head /head (lemma-unbound-bound xs)
 
 
 
