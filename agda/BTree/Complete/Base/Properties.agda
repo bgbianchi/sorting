@@ -1,7 +1,7 @@
-module BTree.Complete.Properties {A : Set} where
+module BTree.Complete.Base.Properties {A : Set} where
 
 open import BTree {A} 
-open import BTree.Complete {A} 
+open import BTree.Complete.Base {A} 
 open import BTree.Equality {A}
 open import BTree.Equality.Properties {A}
 

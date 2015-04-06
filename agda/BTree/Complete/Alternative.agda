@@ -1,4 +1,4 @@
-module CBTree {A : Set} where
+module BTree.Complete.Alternative {A : Set} where
 
 open import BTree {A}
 open import BTree.Equality {A}
@@ -45,18 +45,18 @@ mutual
                   →  l ≃ l'
                   → (node x l r) ⋙ (node x' l' r')
 
-data CBTree : BTree → Set where
-  leaf : CBTree leaf
+data Complete : BTree → Set where
+  leaf : Complete leaf
   left : {l r : BTree} 
                  (x : A)
-                 → CBTree l
-                 → CBTree r
+                 → Complete l
+                 → Complete r
                  → l ⋘ r 
-                 → CBTree (node x l r)
+                 → Complete (node x l r)
   right : {l r : BTree}
                  (x : A)
-                 → CBTree l
-                 → CBTree r
+                 → Complete l
+                 → Complete r
                  → l ⋙ r 
-                 → CBTree (node x l r)
+                 → Complete (node x l r)
 

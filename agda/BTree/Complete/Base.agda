@@ -1,4 +1,4 @@
-module BTree.Complete {A : Set} where
+module BTree.Complete.Base {A : Set} where
 
 open import BTree {A} 
 open import BTree.Equality {A}
