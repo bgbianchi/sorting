@@ -16,10 +16,10 @@ Formalization of some sorting algorithms in Agda
 - **hs\BHeap** - Binary heaps in Haskell
 - **agda\BBHeap\Height\*** - Height related proofs for dependent binary heaps
 - **agda\BBHeap\Height.Heap.agda** - Dependent binary heaps have the heap property
-- **agda\BBHeap\Height\Complete.agda** - Dependent binary heaps are complete trees
+- **agda\BBHeap\Height\Complete\*** - Dependent binary heaps are complete trees
 - **agda\BHeap\Height.agda** - Height related proofs for dependent ordinary heaps
 - **agda\BHeap\Order.agda** - Accesibility for dependent ordinary heaps
-- **agda\BTree\Complete.agda** - Complete predicate for binary trees 
+- **agda\BTree\Complete\*** - Complete predicates for binary trees 
 - **agda\Bound\*** - Many definitions for bounds and order relations for them
 - **agda\BubbleSort\Correctness\*** - Bubble sort correctness proof
 - **agda\Heapsort\Correctness\*** - Heapsort correctness proof
@@ -41,7 +41,6 @@ Formalization of some sorting algorithms in Agda
 - **agda\BSTree.agda** - Binary search preadicate for binary trees
 - **agda\BTree.agda** - Binary trees
 - **agda\BubbleSort.agda** - Bubble sort algorithm
-- **agda\SelectSort\Correctness\*** - Alternative complete predicate for binary trees
 - **agda\Heapsort.agda** - Heapsort algorithm
 - **agda\InsertSort.agda** - Insertion sort algorithms
 - **agda\Mergesort.agda** - Mergesort algorithm
