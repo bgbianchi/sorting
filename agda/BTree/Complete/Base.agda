@@ -21,8 +21,8 @@ data _⋗_ : BTree → BTree → Set where
 
 data NearlyPerfect : BTree → Set where
   npr : {r : BTree}
-                   (l : BTree)
-                   (x : A) 
+                   (x : A)
+                   (l : BTree) 
                    → NearlyPerfect r 
                    → NearlyPerfect (node x l r) 
   np⋗ : {l r : BTree}
