@@ -4,6 +4,8 @@ open import BTree {A}
 
 data Heap : BTree → Set where
   leaf : Heap leaf
+  single : (x : A) 
+                   → Heap (node x leaf leaf)
   left : {l r : BTree}{x y : A} 
                    → x ≤ y 
                    → Heap (node y l r) 
@@ -12,7 +14,7 @@ data Heap : BTree → Set where
                    → x ≤ y 
                    → Heap (node y l r) 
                    → Heap (node x leaf (node y l r))
-  both : {l r l' r' : BTree}(x y y' : A) 
+  both : {l r l' r' : BTree}{x y y' : A} 
                    → x ≤ y 
                    → x ≤ y' 
                    → Heap (node y l r) 

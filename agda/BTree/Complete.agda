@@ -5,15 +5,17 @@ open import BTree.Equality {A}
 
 data Perfect : BTree → Set where
   plf : Perfect leaf
-  pnd : {l r : BTree}
+  p≃ : {l r : BTree}
                    (x : A)
                    → l ≃ r
                    → Perfect (node x l r)
 
 data _⋗_ : BTree → BTree → Set where
-  ⋗lf : (x : A) → node x leaf leaf ⋗ leaf
-  ⋗nd : {l r l' r' : BTree}
-                   (x x' : A) 
+  ⋗lf : (x : A) 
+                   → node x leaf leaf ⋗ leaf
+  ⋗nd : {l r' : BTree}
+                   (x x' : A)
+                   → (r l' : BTree) 
                    → l ⋗ r' 
                    → node x l r ⋗ node x' l' r'
 
@@ -23,7 +25,7 @@ data NearlyPerfect : BTree → Set where
                    (x : A) 
                    → NearlyPerfect r 
                    → NearlyPerfect (node x l r) 
-  npl : {l r : BTree}
+  np⋗ : {l r : BTree}
                    (x : A)
                    → l ⋗ r
                    → NearlyPerfect (node x l r)
