@@ -7,6 +7,7 @@ module PLRTree.Insert.Complete {A : Set}
 open import Data.Empty
 open import Data.Sum renaming (_⊎_ to _∨_)
 open import PLRTree {A} 
+open import PLRTree.Compound {A} 
 open import PLRTree.Insert _≤_ tot≤
 open import PLRTree.Insert.Properties _≤_ tot≤
 open import PLRTree.Complete {A}

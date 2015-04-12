@@ -6,10 +6,8 @@ module PLRTree.Insert.Properties {A : Set}
 
 open import Data.Sum 
 open import PLRTree {A} 
+open import PLRTree.Compound {A} 
 open import PLRTree.Insert _≤_ tot≤
-
-data Compound : PLRTree → Set where
-  compound : {t : Tag}{x : A}{l r : PLRTree} → Compound (node t x l r)
 
 lemma-insert-compound : (x : A)(t : PLRTree) → Compound (insert x t)
 lemma-insert-compound x leaf = compound

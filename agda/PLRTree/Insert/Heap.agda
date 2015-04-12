@@ -8,6 +8,7 @@ module PLRTree.Insert.Heap {A : Set}
 open import Data.Sum
 open import Order.Total _≤_ tot≤
 open import PLRTree {A} 
+open import PLRTree.Compound {A} 
 open import PLRTree.Insert _≤_ tot≤
 open import PLRTree.Insert.Properties _≤_ tot≤
 open import PLRTree.Heap _≤_
