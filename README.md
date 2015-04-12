@@ -20,6 +20,7 @@ Formalization of some sorting algorithms in Agda
 - **agda\BHeap\Height.agda** - Height related proofs for dependent ordinary heaps
 - **agda\BHeap\Order.agda** - Accesibility for dependent ordinary heaps
 - **agda\BTree\Complete\*** - Complete predicates for binary trees 
+- **agda\BTree\Heap.agda** - Heap predicate for binary trees 
 - **agda\Bound\*** - Many definitions for bounds and order relations for them
 - **agda\BubbleSort\Correctness\*** - Bubble sort correctness proof
 - **agda\Heapsort\Correctness\*** - Heapsort correctness proof
@@ -28,6 +29,12 @@ Formalization of some sorting algorithms in Agda
 - **agda\List\Sorted.agda** - Order predicate for ordinary lists
 - **agda\List\Order\*** - Many order relations between elements and ordinary lists
 - **agda\Mergesort\Correctness\*** - Mergesort correctness proof
+- **agda\PLRTree\Complete\** - Complete tagged binary trees are complete binary trees
+- **agda\PLRTree\Complete.agda** - Complete predicate for tagged binary trees
+- **agda\PLRTree\Heap\*** - Tagged binary trees with the heap property are binary trees with the heap property
+- **agda\PLRTree\Heap.agda** - Heap predicate for tagged binary trees
+- **agda\PLRTree\Insert\*** - Inserting into tagged binary heaps produces tagged binary heaps
+- **agda\PLRTree\Insert.agda** - Insertion algorithm for tagged binary heaps
 - **agda\Quicksort\Correctness\*** - Quicksort correctness proof
 - **agda\SList\Order.agda** - Order relation between elements and sized lists
 - **agda\SNat\Order.agda** - Many order relations for sized natural numbers
@@ -45,6 +52,7 @@ Formalization of some sorting algorithms in Agda
 - **agda\InsertSort.agda** - Insertion sort algorithms
 - **agda\Mergesort.agda** - Mergesort algorithm
 - **agda\OList.agda** - Dependent sorted lists
+- **agda\PLRTree.agda** - Tagged binary trees for implementing binary heaps
 - **agda\Quicksort.agda** - Quick sort algorithm
 - **agda\SBList.agda** - Bounded lists with size
 - **agda\SList.agda** - Sized lists
