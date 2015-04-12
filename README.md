@@ -12,8 +12,6 @@ Formalization of some sorting algorithms in Agda
 - **Tree sort**
 
 ## Source files ##
-- **hs\BHeap** - Binary heaps in Haskell
-- **hs\PLRTree** - Complete binary trees in Haskell
 - **agda\BBHeap\Complete\*** - Dependent binary heaps are complete trees
 - **agda\BBHeap\Height\*** - Height related proofs for dependent binary heaps
 - **agda\BBHeap\Heap.agda** - Dependent binary heaps have the heap property
@@ -60,6 +58,8 @@ Formalization of some sorting algorithms in Agda
 - **agda\SNat.agda** - Sized natural numbers
 - **agda\SelectSort.agda** - Selection sort algorithm
 - **agda\TreeSort.agda** - Tree sort algoritms
+- **hs\BHeap** - Binary heaps in Haskell
+- **hs\PLRTree** - Complete binary trees in Haskell
 
 ## Agda version ##
 2.3.2.2
