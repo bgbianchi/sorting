@@ -15,5 +15,3 @@ data PLRTree : Set where
 forget : PLRTree → BTree
 forget leaf = leaf
 forget (node _ x l r) = node x (forget l) (forget r)
-
-

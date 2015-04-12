@@ -1,9 +1,9 @@
 module BHeap where
 
 import Prelude hiding (Left, Right, last, drop)
-import CBTree hiding (insert)
+import PLRTree hiding (insert)
 
-type BHeap a = CBTree a
+type BHeap a = PLRTree a
 
 insert :: Ord a => a -> BHeap a -> BHeap a
 insert x Empty = Perfect x Empty Empty
