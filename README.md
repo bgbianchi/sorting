@@ -30,9 +30,11 @@ Formalization of some sorting algorithms in Agda
 - **agda\Mergesort\Correctness\*** - Mergesort correctness proof
 - **agda\PLRTree\Complete\** - Complete tagged trees are complete trees
 - **agda\PLRTree\Heap\*** - Tagged trees with the heap property are trees with the heap property
+- **agda\PLRTree\Drop\*** - Deletions on tagged heaps produce tagged binary heaps
 - **agda\PLRTree\Insert\*** - Inserting into tagged heaps produces tagged binary heaps
 - **agda\PLRTree\Complete.agda** - Complete predicate for tagged trees
 - **agda\PLRTree\Heap.agda** - Heap predicate for tagged binary trees
+- **agda\PLRTree\Drop.agda** - Deletion algorithm for tagged binary heaps
 - **agda\PLRTree\Insert.agda** - Insertion algorithm for tagged binary heaps
 - **agda\Quicksort\Correctness\*** - Quicksort correctness proof
 - **agda\SList\Order.agda** - Order relation between elements and sized lists
