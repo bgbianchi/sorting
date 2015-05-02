@@ -72,33 +72,6 @@ lemma-⋙-⊥ x (⋙r {r' = r''} y' y'' l'≃r' l''⋙r'' l'≃l'') l⋗rᵢ | i
 ... | node left _ _ _ | compound | ()
 ... | node right _ _ _ | compound | ()
 
-lemma-⋘-⊥ : {l r : PLRTree}(x : A) → l ⋘ r → insert x l ≃ r → ⊥
-lemma-⋘-⊥ x (p⋘ l≃r) lᵢ≃r = lemma-≃-⊥ x (trans≃ l≃r (symm≃ lᵢ≃r))
-lemma-⋘-⊥ x (l⋘ {l = l'} y' y'' l'⋘r' l''≃r'' r'≃l'') lᵢ≃r 
-    with tot≤ x y'
-... | inj₁ x≤y'
-    with insert y' l' | lemma-insert-compound y' l' | lᵢ≃r
-... | node perfect _ _ _ | compound | () 
-... | node left _ _ _ | compound | ()
-... | node right _ _ _ | compound | ()
-lemma-⋘-⊥ x (l⋘ {l = l'} y' y'' l'⋘r' l''≃r'' r'≃l'') lᵢ≃r | inj₂ y'≤x 
-    with insert x l' | lemma-insert-compound x l' | lᵢ≃r
-... | node perfect _ _ _ | compound | () 
-... | node left _ _ _ | compound | ()
-... | node right _ _ _ | compound | ()
-lemma-⋘-⊥ x (r⋘ {r = r'} y' y'' l'⋙r' l''≃r'' l'⋗l'') lᵢ≃r 
-    with tot≤ x y'
-... | inj₁ x≤y'
-    with insert y' r' | lemma-insert-compound y' r' | lᵢ≃r | lemma-⋙-⊥ y' l'⋙r'
-... | node perfect _ _ _ | compound | ≃nd .x .y'' l'≃r'ᵢ _ l'≃l'' | lemma-⋙-⊥' = lemma-⋙-⊥' (lemma-⋗-≃ l'⋗l'' (trans≃ (symm≃ l'≃l'') l'≃r'ᵢ))
-... | node left _ _ _ | compound | () | _
-... | node right _ _ _ | compound | () | _
-lemma-⋘-⊥ x (r⋘ {r = r'} y' y'' l'⋙r' l''≃r'' l'⋗l'') lᵢ≃r | inj₂ y'≤x 
-    with insert x r' | lemma-insert-compound x r' | lᵢ≃r | lemma-⋙-⊥ x l'⋙r'
-... | node perfect _ _ _ | compound | ≃nd .y' .y'' l'≃r'ᵢ _ l'≃l'' | lemma-⋙-⊥' = lemma-⋙-⊥' (lemma-⋗-≃ l'⋗l'' (trans≃ (symm≃ l'≃l'') l'≃r'ᵢ)) 
-... | node left _ _ _ | compound | () | _
-... | node right _ _ _ | compound | () | _
-
 lemma-insert-≃ : {l r : PLRTree}{x : A} → Compound l → l ≃ r → insert x l ⋘ r
 lemma-insert-≃ {node perfect y l r} {node perfect y' l' r'} {x} compound (≃nd .y .y' l≃r l'≃r' l≃l') 
     with tot≤ x y | l | r | l≃r | l' | l≃l'
@@ -121,26 +94,34 @@ lemma-insert-⋗' x (⋗nd {l} {r} {l'} {r'} y y' l≃r l'≃r' l⋗l') compound
                 let _l'ᵢ⋘r' = r⋘ y' x₄ (⋙p (⋗lf x₃)) l₄≃r₄ (⋗lf x₃) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ y' l₁≃r₁ ≃lf (⋗lf x'₁)) (≃nd y' x₄ ≃lf l₄≃r₄ ≃lf)
                 in ⋙l y x l≃r _l'ᵢ⋘r' _l⋗r' 
-lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₁ x≤y' | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₁ y'≤x₃ | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆  l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ = 
+lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₁ x≤y' | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₁ y'≤x₃ | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆  l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ 
+    with lemma-⋙-⋗ (lemma-insert-⋗' x₃  (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) compound) (lemma-⋗-≃ (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆))
+... | inj₁ _l₃ᵢ⋘r₃ = 
                 let _l₁⋗l₃ = ⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅ ;
                      _l₃≃r₃ = ≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ;
-                     _l₃ᵢ⋘r₃ = lemma-⋙-⋗ (lemma-insert-⋗' x₃  _l₁⋗l₃ compound) (lemma-⋗-≃ _l₁⋗l₃ _l₃≃r₃) ;
                      _l'ᵢ⋘r' = l⋘ y' x₄ _l₃ᵢ⋘r₃  l₄≃r₄ (trans≃ (symm≃ _l₃≃r₃) l₃≃l₄) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x₃ l₁≃r₁ _l₃≃r₃ _l₁⋗l₃) (≃nd x₃ x₄ _l₃≃r₃ l₄≃r₄ l₃≃l₄)
                 in ⋙l y x l≃r _l'ᵢ⋘r' _l⋗r'
+... | inj₂ _l₃ᵢ≃r₃
+    with lemma-≃-⊥ x₃ (trans≃ (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ) (symm≃ _l₃ᵢ≃r₃))
+... | ()
 lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₁ x≤y' | node perfect x₃ _ _ | node perfect x₄ l₄ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ l₁⋗l₃ | inj₂ x₃≤y' | leaf | leaf | ≃lf | node perfect x'₁ leaf leaf | ⋗lf .x'₁
     with l₄ | l₃≃l₄
 ... | leaf | ≃lf = 
                 let _l'ᵢ⋘r' = r⋘ x₃ x₄ (⋙p (⋗lf y')) l₄≃r₄ (⋗lf y') ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x₃ l₁≃r₁ ≃lf (⋗lf x'₁)) (≃nd x₃ x₄ ≃lf l₄≃r₄ ≃lf)
                 in ⋙l y x l≃r _l'ᵢ⋘r' _l⋗r' 
-lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₁ x≤y' | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ l₃≃r₃ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ l₁⋗l₃ | inj₂ x₃≤y' | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ = 
+lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₁ x≤y' | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ l₃≃r₃ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ l₁⋗l₃ | inj₂ x₃≤y' | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ 
+    with lemma-⋙-⋗ (lemma-insert-⋗' y'  (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) compound) (lemma-⋗-≃ (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆))
+... | inj₁ _l₃ᵢ⋘r₃ =
                 let _l₁⋗l₃ = ⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅ ;
                      _l₃≃r₃ = ≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ;
-                     _l₃ᵢ⋘r₃ = lemma-⋙-⋗ (lemma-insert-⋗' y'  _l₁⋗l₃ compound) (lemma-⋗-≃ _l₁⋗l₃ _l₃≃r₃) ;
                      _l'ᵢ⋘r' = l⋘ x₃ x₄ _l₃ᵢ⋘r₃  l₄≃r₄ (trans≃ (symm≃ _l₃≃r₃) l₃≃l₄) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x₃ l₁≃r₁ _l₃≃r₃ _l₁⋗l₃) (≃nd x₃ x₄ _l₃≃r₃ l₄≃r₄ l₃≃l₄)
                 in ⋙l y x l≃r _l'ᵢ⋘r' _l⋗r'
+... | inj₂ _l₃ᵢ≃r₃ 
+    with lemma-≃-⊥ y' (trans≃ (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ) (symm≃ _l₃ᵢ≃r₃))
+... | ()
 lemma-insert-⋗' x (⋗nd y y' l≃r l'≃r' l⋗l') compound | inj₂ y'≤x | leaf | leaf | ≃lf | node perfect x₁ leaf leaf | ⋗lf .x₁ = ⋙r y y' l≃r (⋙p (⋗lf x)) (≃nd x₁ x ≃lf ≃lf ≃lf)
 lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfect x₃ l₃ r₃ | node perfect x₄ l₄ _ | ≃nd .x₃ .x₄ l₃≃r₃ l₄≃r₄ l₃≃l₄ | node perfect x₁ l₁ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ l₁⋗l₃ 
     with tot≤ x x₃ | l₃ | r₃ | l₃≃r₃ | l₁ | l₁⋗l₃
@@ -150,26 +131,34 @@ lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfe
                 let _l'ᵢ⋘r' = r⋘ x x₄ (⋙p (⋗lf x₃)) l₄≃r₄ (⋗lf x₃) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x l₁≃r₁ ≃lf (⋗lf x'₁)) (≃nd x x₄ ≃lf l₄≃r₄ ≃lf)
                 in ⋙l y y' l≃r _l'ᵢ⋘r' _l⋗r' 
-lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₁ x≤x₃ | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆  l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ = 
+lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₁ x≤x₃ | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆  l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ 
+    with lemma-⋙-⋗ (lemma-insert-⋗' x₃ (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) compound) (lemma-⋗-≃ (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆))
+... | inj₁ _l₃ᵢ⋘r₃ = 
                 let _l₁⋗l₃ = ⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅ ;
                      _l₃≃r₃ = ≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ;
-                     _l₃ᵢ⋘r₃ = lemma-⋙-⋗ (lemma-insert-⋗' x₃  _l₁⋗l₃ compound) (lemma-⋗-≃ _l₁⋗l₃ _l₃≃r₃) ;
                      _l'ᵢ⋘r' = l⋘ x x₄ _l₃ᵢ⋘r₃ l₄≃r₄ (trans≃ (symm≃ _l₃≃r₃) l₃≃l₄) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x₃ l₁≃r₁ _l₃≃r₃ _l₁⋗l₃) (≃nd x₃ x₄ _l₃≃r₃ l₄≃r₄ l₃≃l₄) 
                 in ⋙l y y' l≃r _l'ᵢ⋘r' _l⋗r'
+... | inj₂ _l₃ᵢ≃r₃ 
+    with lemma-≃-⊥ x₃ (trans≃ (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ) (symm≃ _l₃ᵢ≃r₃))
+... | ()
 lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfect x₃ _ _ | node perfect x₄ l₄ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₂ x₃≤x | leaf | leaf | ≃lf | node perfect x'₁ leaf leaf | ⋗lf .x'₁
     with l₄ | l₃≃l₄
 ... | leaf | ≃lf = 
                 let _l'ᵢ⋘r' = r⋘ x₃ x₄ (⋙p (⋗lf x)) l₄≃r₄ (⋗lf x) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x₃ l₁≃r₁ ≃lf (⋗lf x'₁)) (≃nd x₃ x₄ ≃lf l₄≃r₄ ≃lf)
                 in ⋙l y y' l≃r _l'ᵢ⋘r' _l⋗r' 
-lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₂ x₃≤x | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ = 
+lemma-insert-⋗' x (⋗nd y y' l≃r _ _) compound | inj₂ y'≤x | node perfect x₃ _ _ | node perfect x₄ _ _ | ≃nd .x₃ .x₄ _ l₄≃r₄ l₃≃l₄ | node perfect x₁ _ _ | ⋗nd .x₁ .x₃ l₁≃r₁ _ _ | inj₂ x₃≤x | node perfect x'₅ _ _ | node perfect x'₆ _ _ | ≃nd .x'₅ .x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ | node perfect x'₁ _ _ | ⋗nd .x'₁ .x'₅ l'₁≃r'₁ _ l'₁⋗l'₅ 
+    with  lemma-⋙-⋗ (lemma-insert-⋗' x (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) compound) (lemma-⋗-≃ (⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅) (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆))
+... | inj₁ _l₃ᵢ⋘r₃ =
                 let _l₁⋗l₃ = ⋗nd x'₁ x'₅ l'₁≃r'₁ l'₅≃r'₅ l'₁⋗l'₅ ;
                      _l₃≃r₃ = ≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆ ;
-                     _l₃ᵢ⋘r₃ = lemma-⋙-⋗ (lemma-insert-⋗' x  _l₁⋗l₃ compound) (lemma-⋗-≃ _l₁⋗l₃ _l₃≃r₃) ;
                      _l'ᵢ⋘r' = l⋘ x₃ x₄ _l₃ᵢ⋘r₃  l₄≃r₄ (trans≃ (symm≃ _l₃≃r₃) l₃≃l₄) ;
                      _l⋗r' = lemma-⋗-≃ (⋗nd x₁ x₃ l₁≃r₁ _l₃≃r₃ _l₁⋗l₃) (≃nd x₃ x₄ _l₃≃r₃ l₄≃r₄ l₃≃l₄)
                 in ⋙l y y' l≃r _l'ᵢ⋘r' _l⋗r'
+... | inj₂ _l₃ᵢ≃r₃ 
+    with lemma-≃-⊥ x (trans≃ (≃nd x'₅ x'₆ l'₅≃r'₅ l'₆≃r'₆ l'₅≃l'₆) (symm≃ _l₃ᵢ≃r₃))
+... | ()
 
 lemma-insert-⋗ : {l r : PLRTree}(x : A) → l ⋗ r → l ⋙ (insert x r) ∨ l ≃ (insert x r)
 lemma-insert-⋗ x (⋗lf y) = inj₂ (≃nd y x ≃lf ≃lf ≃lf)
@@ -177,30 +166,28 @@ lemma-insert-⋗ x (⋗nd y y' l≃r l'≃r' l⋗l') = inj₁ (lemma-insert-⋗'
 
 mutual
   lemma-insert-⋘ : {l r : PLRTree}(x : A) → l ⋘ r → (insert x l) ⋘ r ∨ (insert x l) ⋗ r
-  lemma-insert-⋘ x (p⋘ ≃lf) = inj₂ (⋗lf x)
-  lemma-insert-⋘ x (p⋘ (≃nd y y' l≃r l'≃r' l≃l')) = inj₁ (lemma-insert-≃ compound (≃nd y y' l≃r l'≃r' l≃l'))
+  lemma-insert-⋘ x (x⋘ u v w) 
+      with tot≤ x u
+  ... | inj₁ x≤u = inj₂ (⋗nd x w (≃nd v u ≃lf ≃lf ≃lf) ≃lf (⋗lf v)) 
+  ... | inj₂ u≤x = inj₂ (⋗nd u w (≃nd v x ≃lf ≃lf ≃lf) ≃lf (⋗lf v))
   lemma-insert-⋘ x (l⋘ {l = l} y y' l⋘r l'≃r' r≃l') 
       with tot≤ x y
   ... | inj₁ x≤y 
-      with insert y l | lemma-insert-compound y l | lemma-insert-⋘ y l⋘r |  lemma-⋘-⊥ y l⋘r
-  ... | node left _ _ _ | compound | inj₁ lᵢ⋘r | _ = inj₁ (l⋘ x y' lᵢ⋘r l'≃r' r≃l')
-  ... | node left _ _ _ | compound | inj₂ () | _ 
-  ... | node right _ _ _ | compound | inj₁ lᵢ⋙r | _ = inj₁ (l⋘ x y' lᵢ⋙r l'≃r' r≃l')
-  ... | node right _ _ _ | compound | inj₂ () | _
-  ... | node perfect _ _ _ | compound | inj₂ lᵢ⋗r | _ = inj₁ (r⋘ x y' (⋙p lᵢ⋗r) l'≃r' (lemma-⋗-≃ lᵢ⋗r r≃l'))
-  ... | node perfect _ _ _ | compound | inj₁ (p⋘ lᵢ≃r) | lemma-⋘-⊥'
-      with lemma-⋘-⊥' lᵢ≃r 
-  ... | ()
+      with insert y l | lemma-insert-compound y l | lemma-insert-⋘ y l⋘r 
+  ... | node left _ _ _ | compound | inj₁ lᵢ⋘r  = inj₁ (l⋘ x y' lᵢ⋘r l'≃r' r≃l')
+  ... | node left _ _ _ | compound | inj₂ () 
+  ... | node right _ _ _ | compound | inj₁ lᵢ⋙r  = inj₁ (l⋘ x y' lᵢ⋙r l'≃r' r≃l')
+  ... | node right _ _ _ | compound | inj₂ () 
+  ... | node perfect _ _ _ | compound | inj₂ lᵢ⋗r  = inj₁ (r⋘ x y' (⋙p lᵢ⋗r) l'≃r' (lemma-⋗-≃ lᵢ⋗r r≃l'))
+  ... | node perfect _ _ _ | compound | inj₁ ()
   lemma-insert-⋘ x (l⋘ {l = l} y y' l⋘r l'≃r' r≃l') | inj₂ y≤x 
-      with insert x l | lemma-insert-compound x l | lemma-insert-⋘ x l⋘r |  lemma-⋘-⊥ x l⋘r
-  ... | node left _ _ _ | compound | inj₁ lᵢ⋘r | _ = inj₁ (l⋘ y y' lᵢ⋘r l'≃r' r≃l')
-  ... | node left _ _ _ | compound | inj₂ () | _ 
-  ... | node right _ _ _ | compound | inj₁ lᵢ⋘r | _ = inj₁ (l⋘ y y' lᵢ⋘r l'≃r' r≃l')
-  ... | node right _ _ _ | compound | inj₂ () | _
-  ... | node perfect _ _ _ | compound | inj₂ lᵢ⋗r | _ = inj₁ (r⋘ y y' (⋙p lᵢ⋗r) l'≃r' (lemma-⋗-≃ lᵢ⋗r r≃l'))
-  ... | node perfect _ _ _ | compound | inj₁ (p⋘ lᵢ≃r) | lemma-⋘-⊥'
-      with lemma-⋘-⊥' lᵢ≃r 
-  ... | ()
+      with insert x l | lemma-insert-compound x l | lemma-insert-⋘ x l⋘r 
+  ... | node left _ _ _ | compound | inj₁ lᵢ⋘r  = inj₁ (l⋘ y y' lᵢ⋘r l'≃r' r≃l')
+  ... | node left _ _ _ | compound | inj₂ ()  
+  ... | node right _ _ _ | compound | inj₁ lᵢ⋘r  = inj₁ (l⋘ y y' lᵢ⋘r l'≃r' r≃l')
+  ... | node right _ _ _ | compound | inj₂ () 
+  ... | node perfect _ _ _ | compound | inj₂ lᵢ⋗r  = inj₁ (r⋘ y y' (⋙p lᵢ⋗r) l'≃r' (lemma-⋗-≃ lᵢ⋗r r≃l'))
+  ... | node perfect _ _ _ | compound | inj₁ ()
   lemma-insert-⋘ x (r⋘ {r = r} y y' l⋙r l'≃r' l⋗l') 
       with tot≤ x y
   ... | inj₁ x≤y 
@@ -229,25 +216,21 @@ mutual
   lemma-insert-⋙ x (⋙l {l' = l'} y y' l≃r l'⋘r' l⋗r') 
       with tot≤ x y'
   ... | inj₁ x≤y' 
-      with insert y' l' | lemma-insert-compound y' l' | lemma-insert-⋘ y' l'⋘r' |  lemma-⋘-⊥ y' l'⋘r'
-  ... | node left _ _ _ | compound | inj₁ l'ᵢ⋘r' | _ = inj₁ (⋙l y x l≃r l'ᵢ⋘r' l⋗r')
-  ... | node left _ _ _ | compound | inj₂ () | _ 
-  ... | node right _ _ _ | compound | inj₁ l'ᵢ⋙r' | _ = inj₁ (⋙l y x l≃r l'ᵢ⋙r' l⋗r')
-  ... | node right _ _ _ | compound | inj₂ () | _
-  ... | node perfect _ _ _ | compound | inj₂ l'ᵢ⋗r' | _ = inj₁ (⋙r y x l≃r (⋙p l'ᵢ⋗r') (lemma-*⋗ l⋗r' l'ᵢ⋗r'))
-  ... | node perfect _ _ _ | compound | inj₁ (p⋘ l'ᵢ≃r') | lemma-⋘-⊥'
-      with lemma-⋘-⊥' l'ᵢ≃r' 
-  ... | ()
+      with insert y' l' | lemma-insert-compound y' l' | lemma-insert-⋘ y' l'⋘r'
+  ... | node left _ _ _ | compound | inj₁ l'ᵢ⋘r' = inj₁ (⋙l y x l≃r l'ᵢ⋘r' l⋗r')
+  ... | node left _ _ _ | compound | inj₂ () 
+  ... | node right _ _ _ | compound | inj₁ l'ᵢ⋙r' = inj₁ (⋙l y x l≃r l'ᵢ⋙r' l⋗r')
+  ... | node right _ _ _ | compound | inj₂ () 
+  ... | node perfect _ _ _ | compound | inj₂ l'ᵢ⋗r' = inj₁ (⋙r y x l≃r (⋙p l'ᵢ⋗r') (lemma-*⋗ l⋗r' l'ᵢ⋗r'))
+  ... | node perfect _ _ _ | compound | inj₁ ()
   lemma-insert-⋙ x (⋙l {l' = l'} y y' l≃r l'⋘r' l⋗r') | inj₂ y'≤x 
-      with insert x l' | lemma-insert-compound x l' | lemma-insert-⋘ x l'⋘r' | lemma-⋘-⊥ x l'⋘r'
-  ... | node left _ _ _ | compound | inj₁ l'ᵢ⋘r' | _ = inj₁ (⋙l y y' l≃r l'ᵢ⋘r' l⋗r')
-  ... | node left _ _ _ | compound | inj₂ () | _ 
-  ... | node right _ _ _ | compound | inj₁ l'ᵢ⋘r' | _ = inj₁ (⋙l y y' l≃r l'ᵢ⋘r' l⋗r')
-  ... | node right _ _ _ | compound | inj₂ () | _
-  ... | node perfect _ _ _ | compound | inj₂ l'ᵢ⋗r' | _ = inj₁ (⋙r y y' l≃r (⋙p l'ᵢ⋗r') (lemma-*⋗ l⋗r' l'ᵢ⋗r'))
-  ... | node perfect _ _ _ | compound | inj₁ (p⋘ l'ᵢ≃r') | lemma-⋘-⊥'
-      with lemma-⋘-⊥' l'ᵢ≃r' 
-  ... | ()
+      with insert x l' | lemma-insert-compound x l' | lemma-insert-⋘ x l'⋘r'
+  ... | node left _ _ _ | compound | inj₁ l'ᵢ⋘r' = inj₁ (⋙l y y' l≃r l'ᵢ⋘r' l⋗r')
+  ... | node left _ _ _ | compound | inj₂ () 
+  ... | node right _ _ _ | compound | inj₁ l'ᵢ⋘r' = inj₁ (⋙l y y' l≃r l'ᵢ⋘r' l⋗r')
+  ... | node right _ _ _ | compound | inj₂ () 
+  ... | node perfect _ _ _ | compound | inj₂ l'ᵢ⋗r' = inj₁ (⋙r y y' l≃r (⋙p l'ᵢ⋗r') (lemma-*⋗ l⋗r' l'ᵢ⋗r'))
+  ... | node perfect _ _ _ | compound | inj₁ ()
   lemma-insert-⋙ x (⋙r {r' = r'} y y' l≃r l'⋙r' l≃l') 
       with tot≤ x y'
   ... | inj₁ x≤y' 
@@ -282,25 +265,21 @@ lemma-insert-complete x (perfect {l} {r} y cl cr l≃r)
 lemma-insert-complete x (left {l} {r} y cl cr l⋘r)  
     with tot≤ x y 
 ... | inj₁ x≤y 
-    with insert y l | lemma-insert-complete y cl | lemma-insert-⋘ y l⋘r | lemma-insert-compound y l | lemma-⋘-⊥ y l⋘r
-... | node left _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound | _ = left x clᵢ cr lᵢ⋘r
-... | node right _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound | _ = left x clᵢ cr lᵢ⋘r
-... | node left _ _ _ | _ | inj₂ () | compound | _
-... | node right _ _ _ | _ | inj₂ () | compound | _ 
-... | node perfect _ _ _ | clᵢ | inj₂ lᵢ⋗r | compound | _ = right x clᵢ cr (⋙p lᵢ⋗r) 
-... | node perfect x' l' r' | perfect .x' cl' cr' l'≃r' | inj₁ (p⋘ lᵢ≃r) | compound | lemma-⋘-⊥'
-    with lemma-⋘-⊥' lᵢ≃r
-... | ()
+    with insert y l | lemma-insert-complete y cl | lemma-insert-⋘ y l⋘r | lemma-insert-compound y l
+... | node left _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound = left x clᵢ cr lᵢ⋘r
+... | node right _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound = left x clᵢ cr lᵢ⋘r
+... | node left _ _ _ | _ | inj₂ () | compound 
+... | node right _ _ _ | _ | inj₂ () | compound 
+... | node perfect _ _ _ | clᵢ | inj₂ lᵢ⋗r | compound = right x clᵢ cr (⋙p lᵢ⋗r) 
+... | node perfect x' l' r' | perfect .x' cl' cr' l'≃r' | inj₁ () | compound
 lemma-insert-complete x (left {l} {r} y cl cr l⋘r) | inj₂ y≤x
-    with insert x l |  lemma-insert-complete x cl | lemma-insert-⋘ x l⋘r | lemma-insert-compound x l | lemma-⋘-⊥ x l⋘r
-... | node left _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound | _ = left y clᵢ cr lᵢ⋘r
-... | node right _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound | _ = left y clᵢ cr lᵢ⋘r
-... | node left _ _ _ | _ | inj₂ () | compound | _
-... | node right _ _ _ | _ | inj₂ () | compound | _
-... | node perfect _ _ _ | clᵢ | inj₂ lᵢ⋗r | compound | _ = right y clᵢ cr (⋙p lᵢ⋗r) 
-... | node perfect x' l' r' | perfect .x' cl' cr' l'≃r' | inj₁ (p⋘ lᵢ≃r) | compound | lemma-⋘-⊥'
-    with lemma-⋘-⊥' lᵢ≃r
-... | ()
+    with insert x l |  lemma-insert-complete x cl | lemma-insert-⋘ x l⋘r | lemma-insert-compound x l 
+... | node left _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound  = left y clᵢ cr lᵢ⋘r
+... | node right _ _ _ | clᵢ | inj₁ lᵢ⋘r | compound  = left y clᵢ cr lᵢ⋘r
+... | node left _ _ _ | _ | inj₂ () | compound 
+... | node right _ _ _ | _ | inj₂ () | compound 
+... | node perfect _ _ _ | clᵢ | inj₂ lᵢ⋗r | compound  = right y clᵢ cr (⋙p lᵢ⋗r) 
+... | node perfect x' l' r' | perfect .x' cl' cr' l'≃r' | inj₁ () | compound
 lemma-insert-complete x (right {l} {r} y cl cr l⋙r)  
     with tot≤ x y 
 ... | inj₁ x≤y 

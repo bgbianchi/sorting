@@ -15,9 +15,8 @@ data _⋗_ :  PLRTree → PLRTree → Set where
 
 mutual
   data _⋘_ : PLRTree → PLRTree → Set where
-    p⋘ : {l r : PLRTree}
-                  → l ≃ r
-                  → l ⋘ r
+    x⋘ : (x y z : A)
+                  → node right x (node perfect y leaf leaf) leaf ⋘ node perfect z leaf leaf
     l⋘ : {l r l' r' : PLRTree}
                   → (x x' : A)  
                   → l ⋘ r
