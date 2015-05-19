@@ -1,8 +1,6 @@
 language: haskell
 
 before_install:
-  - cabal update
-  - cabal install happy alex
   - cabal install Agda-2.3.2.2  
   - agda --version
 
