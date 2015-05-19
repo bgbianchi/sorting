@@ -3,6 +3,9 @@ language: haskell
 before_install:
   - cabal install Agda-2.3.2.2  
   - agda --version
+  - wget http://www.cse.chalmers.se/~nad/software/lib-0.7.tar.gz -O /tmp/agda-stdlib-0.7.tar.gz
+  - tar -xvf /tmp/agda-stdlib-0.7
+  - export PATH=$PATH:$PWD/agda-stdlib-0.7/
 
 install:
   - /bin/true
