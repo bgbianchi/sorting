@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-} 
 module README where
 
 import BBHeap.Complete.Base
