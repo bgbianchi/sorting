@@ -5,10 +5,9 @@ before_install:
   - agda --version
   - wget http://www.cse.chalmers.se/~nad/software/lib-0.7.tar.gz -O /tmp/lib-0.7.tar.gz
   - tar -xvf /tmp/lib-0.7.tar.gz
-  - export PATH=$PATH:$HOME/build/agda/lib-0.7/src/
 
 install:
   - /bin/true
 
 script:
-  - agda -i. README.agda
+  - agda -i. -i /tmp/lib-0.7/src/ README.agda
