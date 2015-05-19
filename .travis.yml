@@ -1,0 +1,13 @@
+language: haskell
+
+before_install:
+  - cabal update
+  - cabal install happy alex
+  - cabal install Agda-2.3.2.2  --constraint "cpphs < 1.19"
+  - agda --version
+
+install:
+  - /bin/true
+
+script:
+  - agda -i. README.agda
