@@ -11,3 +11,6 @@ install:
 
 script:
   - agda -i. -i /tmp/lib-0.7/src/ README.agda
+
+notifications:
+  email: false
