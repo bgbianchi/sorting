@@ -1,41 +1,48 @@
 module README where
 
-import BBHeap.Complete.Base
-import BBHeap.Heap
-import BBHeap.Height.Convert
-import BBHeap.Height.Log
+open import Relation.Binary.Core
 
-import BHeap.Heap
-import BHeap.Height
+postulate A : Set
+postulate _≤_ : A → A → Set
+postulate tot≤ : Total _≤_
+postulate trans≤ : Transitive _≤_
 
-import BTree.Complete.Alternative.Correctness
+import BBHeap.Complete.Base _≤_
+import BBHeap.Heap _≤_
+import BBHeap.Height.Convert _≤_ tot≤
+import BBHeap.Height.Log _≤_ tot≤
 
-import BubbleSort.Correctness.Order
-import BubbleSort.Correctness.Permutation
+import BHeap.Heap _≤_
+import BHeap.Height _≤_ tot≤
 
-import Heapsort.Correctness.Order
-import Heapsort.Correctness.Permutation
+import BTree.Complete.Alternative.Correctness {A}
 
-import InsertSort.Correctness.Order
-import InsertSort.Correctness.Permutation
+import BubbleSort.Correctness.Order _≤_ tot≤ trans≤
+import BubbleSort.Correctness.Permutation _≤_ tot≤ trans≤
 
-import Mergesort.Correctness.Order
-import Mergesort.Correctness.Permutation
+import Heapsort.Correctness.Order _≤_ tot≤ trans≤
+import Heapsort.Correctness.Permutation _≤_ tot≤ trans≤
 
-import PLRTree.Complete.Correctness.Base
-import PLRTree.Drop.Complete
-import PLRTree.Drop.Heap
-import PLRTree.Drop.Permutation
-import PLRTree.Heap.Correctness
-import PLRTree.Insert.Complete
-import PLRTree.Insert.Heap
-import PLRTree.Insert.Permutation
+import InsertSort.Correctness.Order _≤_ tot≤
+import InsertSort.Correctness.Permutation _≤_ tot≤
 
-import Quicksort.Correctness.Order
-import Quicksort.Correctness.Permutation
+import Mergesort.Correctness.Order _≤_ tot≤
+import Mergesort.Correctness.Permutation _≤_ tot≤
 
-import SelectSort.Correctness.Order
-import SelectSort.Correctness.Permutation
+import PLRTree.Complete.Correctness.Base {A}
+import PLRTree.Drop.Complete _≤_ tot≤
+import PLRTree.Drop.Heap _≤_ tot≤ trans≤
+import PLRTree.Drop.Permutation _≤_ tot≤
+import PLRTree.Heap.Correctness _≤_
+import PLRTree.Insert.Complete _≤_ tot≤
+import PLRTree.Insert.Heap _≤_ tot≤ trans≤
+import PLRTree.Insert.Permutation _≤_ tot≤
 
-import TreeSort.Correctness.Order
-import TreeSort.Correctness.Permutation
+import Quicksort.Correctness.Order _≤_ tot≤ trans≤
+import Quicksort.Correctness.Permutation _≤_ tot≤ 
+
+import SelectSort.Correctness.Order _≤_ tot≤ trans≤
+import SelectSort.Correctness.Permutation _≤_ tot≤
+
+import TreeSort.Correctness.Order _≤_ tot≤ trans≤
+import TreeSort.Correctness.Permutation _≤_ tot≤
