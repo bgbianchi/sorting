@@ -1,6 +1,6 @@
 module PLRTree {A : Set} where
 
-open import BTree {A}
+open import BTree {A} hiding (flatten)
 open import Data.List
 
 data Tag : Set where
@@ -15,3 +15,7 @@ data PLRTree : Set where
 forget : PLRTree → BTree
 forget leaf = leaf
 forget (node _ x l r) = node x (forget l) (forget r)
+
+flatten : PLRTree → List A
+flatten leaf = []
+flatten (node _ x l r) = x ∷ flatten l ++ flatten r

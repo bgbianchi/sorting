@@ -20,7 +20,7 @@ lemma++/l {xs = x ∷ xs} ys/y⟶ys' = /tail (lemma++/l {xs = xs} ys/y⟶ys')
 lemma++/ : {y : A}{xs ys : List A} → (xs ++ y ∷ ys) / y ⟶ (xs ++ ys)
 lemma++/ {xs = xs} = lemma++/l {xs = xs} /head
 
-lemma++∼r : {xs xs' ys : List A} →  xs ∼  xs' → (xs ++ ys) ∼ (xs' ++ ys)
+lemma++∼r : {xs xs' ys : List A} →  xs ∼ xs' → (xs ++ ys) ∼ (xs' ++ ys)
 lemma++∼r {xs} {xs'} {[]} xs∼xs' 
                    rewrite ((proj₂ (IsMonoid.identity (Monoid.isMonoid (monoid A)))) xs) 
                             | ((proj₂ (IsMonoid.identity (Monoid.isMonoid (monoid A)))) xs') = xs∼xs'
