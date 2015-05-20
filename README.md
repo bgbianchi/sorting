@@ -68,3 +68,7 @@ Formalization of some sorting algorithms in Agda
 
 ## Standard library version ##
 0.7
+
+## Build status ##
+
+[![Build Status](https://secure.travis-ci.org/bgbianchi/sorting.png?branch=master)](http://travis-ci.org/bgbianchi/sorting)
