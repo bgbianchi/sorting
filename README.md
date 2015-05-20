@@ -24,7 +24,7 @@ Formalization of some sorting algorithms in Agda
 - **agda\BubbleSort\Correctness\*** - Bubble sort correctness proof
 - **agda\Heapsort\Correctness\*** - Heapsort correctness proof
 - **agda\InsertSort\Correctness\*** - Insertion sort correctness proofs
-- **agda\List\Permutation.agda** - Permutation relation between ordinary lists
+- **agda\List\Permutation\Base.agda** - Permutation relation between ordinary lists
 - **agda\List\Sorted.agda** - Order predicate for ordinary lists
 - **agda\List\Order\*** - Many order relations between elements and ordinary lists
 - **agda\Mergesort\Correctness\*** - Mergesort correctness proof
