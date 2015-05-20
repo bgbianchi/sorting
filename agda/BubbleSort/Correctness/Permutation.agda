@@ -3,15 +3,14 @@ open import Relation.Binary.Core
 
 module BubbleSort.Correctness.Permutation {A : Set}
                   (_≤_ : A → A → Set)
-                  (tot≤ : Total _≤_) 
-                  (trans≤ : Transitive _≤_) where
+                  (tot≤ : Total _≤_) where
 
 open import BubbleSort _≤_ tot≤
 open import Data.Product
 open import Data.List
 open import Data.Sum
-open import List.Permutation A
-open import List.Permutation.Equivalence A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
 open import Size
 open import SList
 open import SList.Properties A

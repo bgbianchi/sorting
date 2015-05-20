@@ -18,9 +18,9 @@ open import Data.Nat renaming (_≤_ to _≤ₙ_)
 open import Data.Nat.Properties
 open import Data.Sum
 open import Heapsort _≤_ tot≤ trans≤
-open import List.Permutation A
-open import List.Permutation.Equivalence A
-open import List.Permutation.Concatenation A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
+open import List.Permutation.Base.Concatenation A
 open import List.Properties A
 open import OList _≤_
 open import Order.Total _≤_ tot≤

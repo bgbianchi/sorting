@@ -10,9 +10,9 @@ open import Bound.Total.Order _≤_
 open import BTree {A}
 open import Data.List
 open import Data.Sum
-open import List.Permutation A
-open import List.Permutation.Concatenation A
-open import List.Permutation.Equivalence A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Concatenation A
+open import List.Permutation.Base.Equivalence A
 open import TreeSort _≤_ tot≤
 
 -- Option 1

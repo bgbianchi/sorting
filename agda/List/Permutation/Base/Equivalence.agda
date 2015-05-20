@@ -1,6 +1,6 @@
-module List.Permutation.Equivalence (A : Set) where
+module List.Permutation.Base.Equivalence (A : Set) where
 
-open import List.Permutation A
+open import List.Permutation.Base A
 open import Data.List
 open import Data.Product renaming (_×_ to _∧_)
 

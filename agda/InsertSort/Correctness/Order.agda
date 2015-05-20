@@ -10,7 +10,6 @@ open import Data.List
 open import Data.Sum
 open import Function using (_∘_)
 open import InsertSort _≤_ tot≤
-open import List.Permutation A
 open import List.Sorted _≤_
 open import OList _≤_
 open import OList.Properties _≤_

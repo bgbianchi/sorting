@@ -1,6 +1,5 @@
 module List.Permutation.Pair (A : Set) where
 
-open import List.Permutation A
 open import Data.List
 open import Data.Product
 

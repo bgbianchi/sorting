@@ -1,7 +1,7 @@
-module List.Permutation.Preorder (A : Set) where
+module List.Permutation.Base.Preorder (A : Set) where
 
-open import List.Permutation A
-open import List.Permutation.Equivalence A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
 open import Data.List
 open import Relation.Binary
 open import Relation.Binary.PropositionalEquality hiding ([_])

@@ -2,7 +2,7 @@
 module SList.Properties (A : Set) where
 
 open import Data.List
-open import List.Permutation A
+open import List.Permutation.Base A
 open import SList 
 
 lemma-unsize-size : (xs : List A) → xs ∼ unsize A (size A xs)

@@ -7,9 +7,9 @@ module PLRTree.Push.Permutation {A : Set}
 open import Data.List
 open import Data.Sum
 open import Induction.WellFounded
-open import List.Permutation A 
-open import List.Permutation.Concatenation A 
-open import List.Permutation.Equivalence A 
+open import List.Permutation.Base A 
+open import List.Permutation.Base.Concatenation A 
+open import List.Permutation.Base.Equivalence A 
 open import PLRTree {A} 
 open import PLRTree.Complete {A} 
 open import PLRTree.Drop _≤_ tot≤

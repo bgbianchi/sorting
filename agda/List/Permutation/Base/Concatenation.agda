@@ -1,8 +1,8 @@
-module List.Permutation.Concatenation (A : Set) where
+module List.Permutation.Base.Concatenation (A : Set) where
 
-open import List.Permutation A
-open import List.Permutation.Equivalence A
-open import List.Permutation.Preorder A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
+open import List.Permutation.Base.Preorder A
 open import Data.List
 open import Data.Product
 open import Relation.Binary.PreorderReasoning ∼-preorder

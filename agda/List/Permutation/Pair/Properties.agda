@@ -1,9 +1,9 @@
 module List.Permutation.Pair.Properties (A : Set) where
 
-open import List.Permutation A
-open import List.Permutation.Equivalence A
-open import List.Permutation.Preorder A
-open import List.Permutation.Concatenation A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Concatenation A
+open import List.Permutation.Base.Equivalence A
+open import List.Permutation.Base.Preorder A
 open import List.Permutation.Pair A
 open import Data.List
 open import Data.Product

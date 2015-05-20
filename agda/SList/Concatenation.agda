@@ -2,7 +2,7 @@
 module SList.Concatenation (A : Set) where
 
 open import Data.List
-open import List.Permutation A
+open import List.Permutation.Base A
 open import Size
 open import SList
 

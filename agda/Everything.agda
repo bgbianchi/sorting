@@ -18,7 +18,7 @@ open import BHeap.Height _≤_ tot≤
 open import BTree.Complete.Alternative.Correctness {A}
 
 open import BubbleSort.Correctness.Order _≤_ tot≤ trans≤
-open import BubbleSort.Correctness.Permutation _≤_ tot≤ trans≤
+open import BubbleSort.Correctness.Permutation _≤_ tot≤ 
 
 open import Heapsort.Correctness.Order _≤_ tot≤ trans≤
 open import Heapsort.Correctness.Permutation _≤_ tot≤ trans≤

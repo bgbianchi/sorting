@@ -10,10 +10,10 @@ open import Bound.Lower.Order _≤_
 open import Data.List
 open import Data.Product
 open import Data.Sum
-open import List.Permutation A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
 open import List.Permutation.Pair A
 open import List.Permutation.Pair.Properties A
-open import List.Permutation.Equivalence A
 open import Mergesort _≤_ tot≤
 open import Size
 open import SList

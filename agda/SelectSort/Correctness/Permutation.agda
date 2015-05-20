@@ -8,8 +8,8 @@ module SelectSort.Correctness.Permutation {A : Set}
 open import Data.List
 open import Data.Product
 open import Data.Sum
-open import List.Permutation A
-open import List.Permutation.Equivalence A
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
 open import Size
 open import SList
 open import SList.Properties

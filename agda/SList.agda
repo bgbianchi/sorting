@@ -3,7 +3,6 @@ module SList (A : Set) where
 
 open import Data.List
 open import Data.Product
-open import List.Permutation A
 open import Size
 
 data SList : {ι : Size} → Set where

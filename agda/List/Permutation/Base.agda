@@ -1,4 +1,4 @@
-module List.Permutation (A : Set) where
+module List.Permutation.Base (A : Set) where
 
 open import Data.List
 
