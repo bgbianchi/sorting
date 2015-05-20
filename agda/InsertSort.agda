@@ -24,13 +24,13 @@ insertSort = foldr insert []
 
 -- Option 2
 
-insert' : { b : Bound} → (x : A) → LeB b (val x) → OList b → OList b
-insert' x b≤x onil = :< b≤x onil
-insert' x b≤x (:< {x = y} b≤y ys) 
+insert' : {b : Bound}{x : A} → LeB b (val x) → OList b → OList b
+insert' {b} {x} b≤x onil = :< b≤x onil
+insert' {b} {x} b≤x (:< {x = y} b≤y ys) 
     with tot≤ x y
 ... | inj₁ x≤y = :< b≤x (:< (lexy x≤y) ys)
-... | inj₂ y≤x = :< b≤y (insert' x (lexy y≤x) ys)
+... | inj₂ y≤x = :< b≤y (insert' (lexy y≤x) ys)
 
 insertSort' : List A → OList bot
 insertSort' [] = onil
-insertSort' (x ∷ xs) = insert' x lebx (insertSort' xs)
+insertSort' (x ∷ xs) = insert' {bot} {x} lebx (insertSort' xs)

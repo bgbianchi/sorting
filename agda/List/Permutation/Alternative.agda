@@ -9,10 +9,10 @@ data _∼_ : List A → List A → Set where
                    → xs ∼ ys 
                    → ys ∼ zs 
                    → xs ∼ zs
-  ∼x : {xs ys : List A}(x : A) 
+  ∼head : {xs ys : List A}(x : A) 
                    → xs ∼ ys 
                    → (x ∷ xs) ∼ (x ∷ ys)
-  ∼xy : {xs ys : List A}(x y : A) 
+  ∼swap : {xs ys : List A}{x y : A}
                    → (x ∷ y ∷ xs) ∼ ys 
                    → (y ∷ x ∷ xs) ∼ ys
 
