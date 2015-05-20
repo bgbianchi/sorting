@@ -10,7 +10,7 @@ install:
   - /bin/true
 
 script:
-  - agda -i . -i /tmp/lib-0.7/src/ agda/Everything.agda
+  - agda -i . -i /tmp/lib-0.7/src/ /agda/Everything.agda
 
 notifications:
   email: false
