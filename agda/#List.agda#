@@ -1,0 +1,11 @@
+open import Relation.Binary.Core
+
+module List {A : Set} 
+                  (_≤_ : A → A → Set)
+                  (tot≤ : Total _≤_)  where
+
+open import Data.List
+open import Data.Sum
+
+
+
