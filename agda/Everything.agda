@@ -26,6 +26,8 @@ open import Heapsort.Correctness.Permutation _≤_ tot≤ trans≤
 open import InsertSort.Correctness.Order _≤_ tot≤
 open import InsertSort.Correctness.Permutation _≤_ tot≤
 
+open import List.Permutation.Base.Bag A
+
 open import Mergesort.Correctness.Order _≤_ tot≤
 open import Mergesort.Correctness.Permutation _≤_ tot≤
 
