@@ -9,6 +9,7 @@ module Heapsort.Correctness.Permutation {A : Set}
 open import Bound.Lower A
 open import Bound.Lower.Order _≤_ 
 open import BBHeap _≤_ hiding (forget)
+open import BBHeap.Insert _≤_ tot≤ trans≤
 open import BHeap _≤_ hiding (forget) renaming (flatten to flatten')
 open import BHeap.Order _≤_
 open import BHeap.Order.Properties _≤_
@@ -25,7 +26,6 @@ open import List.Properties A
 open import OList _≤_
 open import Order.Total _≤_ tot≤
 open import Relation.Binary
-open import Relation.Binary.PropositionalEquality hiding (trans)
 
 open DecTotalOrder decTotalOrder hiding (refl)
 
