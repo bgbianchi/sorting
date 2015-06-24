@@ -3,14 +3,14 @@ module BHeap {A : Set}(_≤_ : A → A → Set) where
 open import Bound.Lower A
 open import Bound.Lower.Order _≤_
 open import BTree {A} hiding (flatten)
-open import Data.Nat
+open import Data.Nat hiding (_≤_)
 open import Data.List
 open import Data.Sum renaming (_⊎_ to _∨_)
 open import Relation.Binary
 open import Relation.Binary.Core
 open import Relation.Binary.PropositionalEquality hiding (trans)
 
-open DecTotalOrder decTotalOrder hiding (refl)
+open DecTotalOrder decTotalOrder hiding (refl ; _≤_)
 
 data BHeap : Bound → Set where
   lf : {b : Bound} 

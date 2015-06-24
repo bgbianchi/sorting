@@ -1,5 +1,3 @@
-open import Relation.Binary.Core
-
 module BHeap.Heap {A : Set}(_≤_ : A → A → Set) where
 
 open import BHeap _≤_ 
