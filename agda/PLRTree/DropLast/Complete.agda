@@ -87,7 +87,7 @@ mutual
   ... | node right _ _ _ | inj₁ dl-x'₁l'₁r'₁⋘x'₂l'₂r'₂ = inj₁ (⋙l x x' l≃r dl-x'₁l'₁r'₁⋘x'₂l'₂r'₂ (⋗nd x₁ x'₂ l₁≃r₁ l'₂≃r'₂ l₁⋗l'₂))
   ... | leaf | inj₂ ()
   ... | node perfect x'' l'' r'' | inj₂ (≃nd .x'' .x'₂ l''≃r'' _ l''≃l'₂) = 
-               let l₁⋗l'' = lemma-⋗-≃ l₁⋗l'₂ (symm≃ l''≃l'₂) 
+               let l₁⋗l'' = lemma-⋗-≃ l₁⋗l'₂ (sym≃ l''≃l'₂) 
                in inj₁ (⋙p (⋗nd x x' l≃r (≃nd x'' x'₂ l''≃r'' l'₂≃r'₂ l''≃l'₂) (⋗nd x₁ x'' l₁≃r₁ l''≃r'' l₁⋗l'')))
   ... | node left _ _ _ | inj₂ ()
   ... | node right _ _ _ | inj₂ ()
@@ -99,7 +99,7 @@ mutual
   ... | node right _ _ _ | inj₁ dl-x'₁l'₁r'₁⋘x'₂l'₂r'₂ = inj₁ (⋙l x x' l≃r dl-x'₁l'₁r'₁⋘x'₂l'₂r'₂ (⋗nd x₁ x'₂ l₁≃r₁ l'₂≃r'₂ l₁⋗l'₂))
   ... | leaf | inj₂ ()
   ... | node perfect x'' l'' r'' | inj₂ (≃nd .x'' .x'₂ l''≃r'' _ l''≃l'₂) = 
-               let l₁⋗l'' = lemma-⋗-≃ l₁⋗l'₂ (symm≃ l''≃l'₂) 
+               let l₁⋗l'' = lemma-⋗-≃ l₁⋗l'₂ (sym≃ l''≃l'₂) 
                in inj₁ (⋙p (⋗nd x x' l≃r (≃nd x'' x'₂ l''≃r'' l'₂≃r'₂ l''≃l'₂) (⋗nd x₁ x'' l₁≃r₁ l''≃r'' l₁⋗l'')))
   ... | node left _ _ _ | inj₂ ()
   ... | node right _ _ _ | inj₂ ()
@@ -107,7 +107,7 @@ mutual
   lemma-dropLast-⋙ (⋙r x x' l≃r (⋙p (⋗lf x'₁)) (≃nd x₁ .x'₁ ≃lf ≃lf ≃lf)) = inj₁ (⋙p (⋗nd x x' l≃r ≃lf (⋗lf x₁)))
   lemma-dropLast-⋙ (⋙r x x' l≃r (⋙p (⋗nd x'₁ x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁⋗l'₂)) (≃nd x₁ .x'₁ l₁≃r₁ _ l₁≃l'₁)) = 
                let dl-x'₁l'₁r'₁⋘x'₂l'₂r'₂ =  lemma-dropLast-⋗ (⋗nd x'₁ x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁⋗l'₂) compound ;
-                    l₁⋗l'₂ = lemma-≃-⋗ (symm≃ l₁≃l'₁) l'₁⋗l'₂
+                    l₁⋗l'₂ = lemma-≃-⋗ (sym≃ l₁≃l'₁) l'₁⋗l'₂
                in inj₁ (⋙l x x' l≃r dl-x'₁l'₁r'₁⋘x'₂l'₂r'₂ (⋗nd x₁ x'₂ l₁≃r₁ l'₂≃r'₂ l₁⋗l'₂))
   lemma-dropLast-⋙ (⋙r x x' l≃r (⋙l x'₁ x'₂ l'₁≃r'₁ l'₂⋘r'₂ l'₁⋗r'₂) (≃nd x₁ .x'₁ l₁≃r₁ _ l₁≃l'₁)) 
       with lemma-dropLast-⋙ (⋙l x'₁ x'₂ l'₁≃r'₁ l'₂⋘r'₂ l'₁⋗r'₂)

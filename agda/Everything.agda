@@ -8,9 +8,12 @@ postulate tot≤ : Total _≤_
 postulate trans≤ : Transitive _≤_
 
 open import BBHeap.Complete.Base _≤_
+open import BBHeap.Drop _≤_ tot≤ trans≤
+open import BBHeap.DropLast _≤_
 open import BBHeap.Heap _≤_
 open import BBHeap.Height.Convert _≤_ tot≤
 open import BBHeap.Height.Log _≤_ tot≤
+open import BBHeap.Last
 
 open import BHeap.Heap _≤_
 open import BHeap.Height _≤_ tot≤

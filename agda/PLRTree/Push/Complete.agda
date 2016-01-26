@@ -25,7 +25,7 @@ mutual
              in ≃nd x x (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) (≃nd x₁ x₁ l₁≃r₁ l₁≃r₁ l₁≃l₁)
   ... | inj₁ x≤x₁ | inj₂ x₂≤x | _ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
              let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                  push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
+                  push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
                   x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) push-xl₁r₁≃x₂l₂r₂ ;
                   x₁l₁r₁≃x₁l₁r₁ = lemma-≃-≃ (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂)
              in ≃nd x x₂ (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) x₁l₁r₁≃push-xl₂r₂ x₁l₁r₁≃x₁l₁r₁
@@ -47,13 +47,13 @@ mutual
              in ≃nd x x₁ (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) push-xl₁r₁≃x₂l₂r₂ x₁l₁r₁≃push-xl₁r₁ 
   ... | inj₂ x₁≤x | inj₂ x₂≤x | inj₂ x₂≤x₁ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
              let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                  push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
+                  push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
                   x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) push-xl₁r₁≃x₂l₂r₂ ;
                   x₁l₁r₁≃x₁l₁r₁ = lemma-≃-≃ (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂)
              in ≃nd x x₂ (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) x₁l₁r₁≃push-xl₂r₂ x₁l₁r₁≃x₁l₁r₁
 
   lemma-push-≃ : {t t' : PLRTree} → t ≃ t' → (acc : Acc _≺_ t) → push t acc ≃ t
-  lemma-push-≃ t≃t' at = symm≃ (lemma-≃-push t≃t' at)
+  lemma-push-≃ t≃t' at = sym≃ (lemma-≃-push t≃t' at)
 
 lemma-push-⋗ : {t t' : PLRTree} → t ⋗ t' → (acc : Acc _≺_ t) → push t acc ⋗ t'
 lemma-push-⋗ (⋗lf x) _ = ⋗lf x
@@ -71,7 +71,7 @@ lemma-push-⋗ (⋗nd x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r
 ... | inj₁ x≤x₁ | inj₁ x≤x₂ | _ = ⋗nd x x' (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) l'≃r' (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 ... | inj₁ x≤x₁ | inj₂ x₂≤x | _ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
            let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
+                push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
                 x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) push-xl₁r₁≃x₂l₂r₂ 
            in ⋗nd x₂ x' x₁l₁r₁≃push-xl₂r₂ l'≃r' (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 ... | inj₂ x₁≤x | inj₁ x≤x₂ | _ rewrite lemma-≡-height perfect x x₁ l₁ r₁ = 
@@ -86,7 +86,7 @@ lemma-push-⋗ (⋗nd x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r
            in ⋗nd x₁ x' push-xl₁r₁≃x₂l₂r₂ l'≃r' push-xl₁r₁⋗x'₁l'₁r'₁
 ... | inj₂ x₁≤x | inj₂ x₂≤x | inj₂ x₂≤x₁ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
            let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
+                push-xl₁r₁≃x₂l₂r₂ = lemma-≃-push  (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂ ;
                 x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) push-xl₁r₁≃x₂l₂r₂ 
            in ⋗nd x₂ x' x₁l₁r₁≃push-xl₂r₂ l'≃r' (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 
@@ -98,7 +98,7 @@ lemma-⋗-push (⋗nd x x' l≃r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'
 ... | inj₁ x'≤x'₁ | inj₁ x'≤x'₂ | _ = ⋗nd x x' l≃r (≃nd x'₁ x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 ... | inj₁ x'≤x'₁ | inj₂ x'₂≤x' | _ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ = 
            let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
-                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (symm≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
+                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (sym≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
            in ⋗nd x x'₂ l≃r x'₁l'₁r'₁≃push-x'l'₂r'₂ (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 ... | inj₂ x'₁≤x' | inj₁ x'≤x'₂ | _ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ = 
            let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
@@ -112,7 +112,7 @@ lemma-⋗-push (⋗nd x x' l≃r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'
            in ⋗nd x x'₁ l≃r push-x'l'₁r'₁≃x'₂l'₂r'₂ x₁l₁r₁⋗push-x'l'₁r'₁
 ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₂ x'₂≤x'₁ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ = 
            let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
-                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (symm≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
+                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (sym≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
            in ⋗nd x x'₂ l≃r x'₁l'₁r'₁≃push-x'l'₂r'₂ (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 
 lemma-⋘-push : {t t' : PLRTree} → t ⋘ t' → (acc : Acc _≺_ t') → t ⋘ push t' acc
@@ -123,7 +123,7 @@ lemma-⋘-push (l⋘ x x' l⋘r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'�
 ... | inj₁ x'≤x'₁ | inj₁ x'≤x'₂ | _ = l⋘ x x' l⋘r (≃nd x'₁ x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (≃nd x₂ x'₁ l₂≃r₂ l'₁≃r'₁ l₂≃l'₁)
 ... | inj₁ x'≤x'₁ | inj₂ x'₂≤x' | _ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ = 
            let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
-                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (symm≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
+                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (sym≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
            in l⋘ x x'₂ l⋘r x'₁l'₁r'₁≃push-x'l'₂r'₂ (≃nd x₂ x'₁ l₂≃r₂ l'₁≃r'₁ l₂≃l'₁)
 ... | inj₂ x'₁≤x' | inj₁ x'≤x'₂ | _ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ = 
            let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
@@ -137,7 +137,7 @@ lemma-⋘-push (l⋘ x x' l⋘r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'�
            in l⋘ x x'₁ l⋘r push-x'l'₁r'₁≃x'₂l'₂r'₂ x₂l₂r₂≃push-x'l'₁r'₁
 ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₂ x'₂≤x'₁ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ = 
            let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
-                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (symm≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
+                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (sym≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
            in l⋘ x x'₂ l⋘r x'₁l'₁r'₁≃push-x'l'₂r'₂ (≃nd x₂ x'₁ l₂≃r₂ l'₁≃r'₁ l₂≃l'₁)
 lemma-⋘-push (r⋘ x x' l⋙r ≃lf (⋗lf x₁)) _ = r⋘ x x' l⋙r ≃lf (⋗lf x₁)
 lemma-⋘-push (r⋘ x x' l⋙r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (⋗nd x₁ .x'₁ l₁≃r₁ _ l₁⋗l'₁)) (acc rs) 
@@ -145,7 +145,7 @@ lemma-⋘-push (r⋘ x x' l⋙r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'�
 ... | inj₁ x'≤x'₁ | inj₁ x'≤x'₂ | _ = r⋘ x x' l⋙r (≃nd x'₁ x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 ... | inj₁ x'≤x'₁ | inj₂ x'₂≤x' | _ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ = 
            let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
-                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (symm≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
+                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (sym≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
            in r⋘ x x'₂ l⋙r  x'₁l'₁r'₁≃push-x'l'₂r'₂ (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 ... | inj₂ x'₁≤x' | inj₁ x'≤x'₂ | _ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ = 
            let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
@@ -157,7 +157,7 @@ lemma-⋘-push (r⋘ x x' l⋙r (≃nd {l'₁} {r'₁} {l'₂} {r'₂} x'₁ x'�
            in r⋘ x x'₁ l⋙r push-x'l'₁r'₁≃x'₂l'₂r'₂ (lemma-⋗-push (⋗nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁) acc-x'l'₁r'₁)
 ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₂ x'₂≤x'₁ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ =
            let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right perfect x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
-                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (symm≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
+                x'₁l'₁r'₁≃push-x'l'₂r'₂ = trans≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂) (lemma-≃-push (sym≃ (≃nd x'₁ x' l'₁≃r'₁ l'₂≃r'₂ l'₁≃l'₂)) acc-x'l'₂r'₂)
            in r⋘ x x'₂ l⋙r  x'₁l'₁r'₁≃push-x'l'₂r'₂ (⋗nd x₁ x'₁ l₁≃r₁ l'₁≃r'₁ l₁⋗l'₁)
 
 lemma-push-⋙ : {t t' : PLRTree} → t ⋙ t' → (acc : Acc _≺_ t) → push t acc ⋙ t'
@@ -169,7 +169,7 @@ lemma-push-⋙ (⋙l x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r�
 ... | inj₁ x≤x₁ | inj₁ x≤x₂ | _ = ⋙l x x' (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) l'⋘r' (⋗nd x₁ x₄ l₁≃r₁ l₄≃r₄ l₁⋗r₄) 
 ... | inj₁ x≤x₁ | inj₂ x₂≤x | _ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
            let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push  (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
+                x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push  (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
            in ⋙l x₂ x' x₁l₁r₁≃push-xl₂r₂ l'⋘r' (⋗nd x₁ x₄ l₁≃r₁ l₄≃r₄ l₁⋗r₄) 
 ... | inj₂ x₁≤x | inj₁ x≤x₂ | _ rewrite lemma-≡-height perfect x x₁ l₁ r₁ = 
            let acc-xl₁r₁ = rs (node perfect x l₁ r₁) (lemma-≺-left perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
@@ -181,7 +181,7 @@ lemma-push-⋙ (⋙l x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r�
            in ⋙l x₁ x' push-xl₁r₁≃x₂l₂r₂ l'⋘r' (lemma-push-⋗ (⋗nd x x₄ l₁≃r₁ l₄≃r₄ l₁⋗r₄) acc-xl₁r₁)
 ... | inj₂ x₁≤x | inj₂ x₂≤x | inj₂ x₂≤x₁ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
            let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                x₁l₁r₁≃push-xl₂r₂ =  trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push  (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
+                x₁l₁r₁≃push-xl₂r₂ =  trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push  (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
            in ⋙l x₂ x' x₁l₁r₁≃push-xl₂r₂ l'⋘r' (⋗nd x₁ x₄ l₁≃r₁ l₄≃r₄ l₁⋗r₄) 
 lemma-push-⋙ (⋙r _ _ ≃lf (⋙p ()) ≃lf) _
 lemma-push-⋙ (⋙r x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) l'⋙r' (≃nd .x₁ x₃ _ l₃≃r₃ l₁≃l₃)) (acc rs) 
@@ -189,7 +189,7 @@ lemma-push-⋙ (⋙r x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r�
 ... | inj₁ x≤x₁ | inj₁ x≤x₂ | _ = ⋙r x x' (≃nd x₁ x₂ l₁≃r₁ l₂≃r₂ l₁≃l₂) l'⋙r' (≃nd x₁ x₃ l₁≃r₁ l₃≃r₃ l₁≃l₃) 
 ... | inj₁ x≤x₁ | inj₂ x₂≤x | _ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
            let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
+                x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
            in ⋙r x₂ x' x₁l₁r₁≃push-xl₂r₂ l'⋙r' (≃nd x₁ x₃ l₁≃r₁ l₃≃r₃ l₁≃l₃) 
 ... | inj₂ x₁≤x | inj₁ x≤x₂ | _ rewrite lemma-≡-height perfect x x₁ l₁ r₁ = 
            let acc-xl₁r₁ = rs (node perfect x l₁ r₁) (lemma-≺-left perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
@@ -203,7 +203,7 @@ lemma-push-⋙ (⋙r x x' (≃nd {l₁} {r₁} {l₂} {r₂} x₁ x₂ l₁≃r�
            in ⋙r x₁ x' push-xl₁r₁≃x₂l₂r₂ l'⋙r' push-xl₁r₁≃x₃l₃r₃ 
 ... | inj₂ x₁≤x | inj₂ x₂≤x | inj₂ x₂≤x₁ rewrite lemma-≡-height perfect x x₂ l₂ r₂ = 
            let acc-xl₂r₂ = rs (node perfect x l₂ r₂) (lemma-≺-right perfect x (node perfect x₁ l₁ r₁) (node perfect x₂ l₂ r₂)) ;
-                x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push (symm≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
+                x₁l₁r₁≃push-xl₂r₂ = trans≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂) (lemma-≃-push (sym≃ (≃nd x₁ x l₁≃r₁ l₂≃r₂ l₁≃l₂)) acc-xl₂r₂)
            in ⋙r x₂ x' x₁l₁r₁≃push-xl₂r₂ l'⋙r' (≃nd x₁ x₃ l₁≃r₁ l₃≃r₃ l₁≃l₃) 
 
 mutual
@@ -222,12 +222,12 @@ mutual
   ... | inj₂ x'₁≤x' | inj₁ x'≤x'₂ | _ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ =
              let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left right x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
                   push-x'l'₁r'₁⋗x'₂l'₂r'₂ = lemma-push-⋗ (⋗nd x' x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁⋗l'₂) acc-x'l'₁r'₁ ;
-                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (symm≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
+                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (sym≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
              in ⋙r x x'₁ l≃r (⋙p push-x'l'₁r'₁⋗x'₂l'₂r'₂) x₁l₁r₁≃push-x'l'₁r'₁
   ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₁ x'₁≤x'₂ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ = 
              let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left right x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
                   push-x'l'₁r'₁⋗x'₂l'₂r'₂ = lemma-push-⋗ (⋗nd x' x'₂ l'₁≃r'₁ l'₂≃r'₂ l'₁⋗l'₂) acc-x'l'₁r'₁ ;
-                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (symm≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
+                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (sym≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
              in ⋙r x x'₁ l≃r (⋙p push-x'l'₁r'₁⋗x'₂l'₂r'₂) x₁l₁r₁≃push-x'l'₁r'₁
   ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₂ x'₂≤x'₁ rewrite lemma-≡-height perfect x' x'₂ l'₂ r'₂ = 
              let acc-x'l'₂r'₂ = rs (node perfect x' l'₂ r'₂) (lemma-≺-right right x' (node perfect x'₁ l'₁ r'₁) (node perfect x'₂ l'₂ r'₂)) ;
@@ -243,12 +243,12 @@ mutual
   ... | inj₂ x'₁≤x' | inj₁ x'≤x'₂ | _ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ =
              let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left right x' (node perfect x'₁ l'₁ r'₁) (node left x'₂ l'₂ r'₂)) ; 
                   push-x'l'₁r'₁⋙x'₂l'₂r'₂ = lemma-push-⋙ (⋙l x' x'₂ l'₁≃r'₁ l'₂⋘r'₂ l'₁⋗r'₂) acc-x'l'₁r'₁ ;
-                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (symm≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
+                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (sym≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
              in ⋙r x x'₁ l≃r push-x'l'₁r'₁⋙x'₂l'₂r'₂ x₁l₁r₁≃push-x'l'₁r'₁
   ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₁ x'₁≤x'₂ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ = 
              let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left right x' (node perfect x'₁ l'₁ r'₁) (node left x'₂ l'₂ r'₂)) ; 
                   push-x'l'₁r'₁⋙x'₂l'₂r'₂ = lemma-push-⋙ (⋙l x' x'₂ l'₁≃r'₁ l'₂⋘r'₂ l'₁⋗r'₂) acc-x'l'₁r'₁ ;
-                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (symm≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
+                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (sym≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
              in ⋙r x x'₁ l≃r push-x'l'₁r'₁⋙x'₂l'₂r'₂ x₁l₁r₁≃push-x'l'₁r'₁
   ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₂ x'₂≤x'₁ rewrite lemma-≡-height left x' x'₂ l'₂ r'₂ = 
              let acc-x'l'₂r'₂ = rs (node left x' l'₂ r'₂) (lemma-≺-right right x' (node perfect x'₁ l'₁ r'₁) (node left x'₂ l'₂ r'₂)) ;
@@ -265,12 +265,12 @@ mutual
   ... | inj₂ x'₁≤x' | inj₁ x'≤x'₂ | _ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ =
              let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left right x' (node perfect x'₁ l'₁ r'₁) (node right x'₂ l'₂ r'₂)) ; 
                   push-x'l'₁r'₁⋙x'₂l'₂r'₂ = lemma-push-⋙ (⋙r x' x'₂ l'₁≃r'₁ l'₂⋙r'₂ l'₁≃l'₂) acc-x'l'₁r'₁ ;
-                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (symm≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
+                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (sym≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
              in ⋙r x x'₁ l≃r push-x'l'₁r'₁⋙x'₂l'₂r'₂ x₁l₁r₁≃push-x'l'₁r'₁
   ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₁ x'₁≤x'₂ rewrite lemma-≡-height perfect x' x'₁ l'₁ r'₁ =
              let acc-x'l'₁r'₁ = rs (node perfect x' l'₁ r'₁) (lemma-≺-left right x' (node perfect x'₁ l'₁ r'₁) (node right x'₂ l'₂ r'₂)) ; 
                   push-x'l'₁r'₁⋙x'₂l'₂r'₂ = lemma-push-⋙ (⋙r x' x'₂ l'₁≃r'₁ l'₂⋙r'₂ l'₁≃l'₂) acc-x'l'₁r'₁ ;
-                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (symm≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
+                  x₁l₁r₁≃push-x'l'₁r'₁ = trans≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁) (lemma-≃-push (sym≃ (≃nd x₁ x' l₁≃r₁ l'₁≃r'₁ l₁≃l'₁)) acc-x'l'₁r'₁)
              in ⋙r x x'₁ l≃r push-x'l'₁r'₁⋙x'₂l'₂r'₂ x₁l₁r₁≃push-x'l'₁r'₁
   ... | inj₂ x'₁≤x' | inj₂ x'₂≤x' | inj₂ x'₂≤x'₁ rewrite lemma-≡-height right x' x'₂ l'₂ r'₂ =
              let acc-x'l'₂r'₂ = rs (node right x' l'₂ r'₂) (lemma-≺-right right x' (node perfect x'₁ l'₁ r'₁) (node right x'₂ l'₂ r'₂)) ;
@@ -488,7 +488,7 @@ lemma-push-complete-≃ {l} {r} x cl cr l≃r (acc rs)
 ... | inj₁ x≤x' | inj₁ x≤x'' | _ = perfect x (perfect x' cl' cr' l'≃r') (perfect x'' cl'' cr'' l''≃r'') (≃nd x' x'' l'≃r' l''≃r'' l'≃l'')
 ... | inj₁ x≤x' | inj₂ x''≤x | _ rewrite lemma-≡-height perfect x x'' l'' r'' = 
            let acc-xl''r'' = rs (node perfect x l'' r'') (lemma-≺-right perfect x (node perfect x' l' r') (node perfect x'' l'' r'')) ;
-                xl''r''≃push-xl''r'' = lemma-≃-push (symm≃ (≃nd x x l'≃r' l''≃r'' l'≃l'')) acc-xl''r'' ;
+                xl''r''≃push-xl''r'' = lemma-≃-push (sym≃ (≃nd x x l'≃r' l''≃r'' l'≃l'')) acc-xl''r'' ;
                 x'l'r'≃push-xl''r'' = trans≃ (≃nd x' x l'≃r' l''≃r'' l'≃l'') xl''r''≃push-xl''r''
            in perfect x'' (perfect x' cl' cr' l'≃r') (lemma-push-complete-≃ x cl'' cr'' l''≃r'' acc-xl''r'') x'l'r'≃push-xl''r''
 ... | inj₂ x'≤x | inj₁ x≤x'' | _ rewrite lemma-≡-height perfect x x' l' r' = 
@@ -503,7 +503,7 @@ lemma-push-complete-≃ {l} {r} x cl cr l≃r (acc rs)
            in perfect x' (lemma-push-complete-≃ x cl' cr' l'≃r' acc-xl'r') (perfect x'' cl'' cr'' l''≃r'') push-xl'r'≃x''l''r''
 ... | inj₂ x'≤x | inj₂ x''≤x | inj₂ x''≤x' rewrite lemma-≡-height perfect x x'' l'' r'' = 
            let acc-xl''r'' = rs (node perfect x l'' r'') (lemma-≺-right perfect x (node perfect x' l' r') (node perfect x'' l'' r'')) ;
-                xl''r''≃push-xl''r'' = lemma-≃-push (symm≃ (≃nd x x l'≃r' l''≃r'' l'≃l'')) acc-xl''r'' ;
+                xl''r''≃push-xl''r'' = lemma-≃-push (sym≃ (≃nd x x l'≃r' l''≃r'' l'≃l'')) acc-xl''r'' ;
                 x'l'r'≃push-xl''r'' = trans≃ (≃nd x' x l'≃r' l''≃r'' l'≃l'') xl''r''≃push-xl''r''
            in perfect x'' (perfect x' cl' cr' l'≃r') (lemma-push-complete-≃ x cl'' cr'' l''≃r'' acc-xl''r'') x'l'r'≃push-xl''r''
 

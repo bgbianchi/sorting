@@ -6,14 +6,15 @@ module Heapsort.Correctness.Permutation {A : Set}
                   (tot≤ : Total _≤_) 
                   (trans≤ : Transitive _≤_) where
 
-open import Bound.Lower A
-open import Bound.Lower.Order _≤_ 
 open import BBHeap _≤_ hiding (forget)
 open import BBHeap.Insert _≤_ tot≤ trans≤
+open import BBHeap.Subtyping _≤_ trans≤
 open import BHeap _≤_ hiding (forget) renaming (flatten to flatten')
 open import BHeap.Order _≤_
 open import BHeap.Order.Properties _≤_
 open import BHeap.Properties _≤_ 
+open import Bound.Lower A
+open import Bound.Lower.Order _≤_ 
 open import Data.List
 open import Data.Nat renaming (_≤_ to _≤ₙ_)
 open import Data.Nat.Properties

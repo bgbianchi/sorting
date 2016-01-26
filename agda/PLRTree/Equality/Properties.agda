@@ -4,9 +4,9 @@ open import PLRTree {A}
 open import PLRTree.Equality {A}
 open import Relation.Binary.Core
 
-symm≃ : Symmetric _≃_
-symm≃ ≃lf = ≃lf
-symm≃ (≃nd x x' l≃r l'≃r' l≃l') = ≃nd x' x l'≃r' l≃r (symm≃ l≃l')
+sym≃ : Symmetric _≃_
+sym≃ ≃lf = ≃lf
+sym≃ (≃nd x x' l≃r l'≃r' l≃l') = ≃nd x' x l'≃r' l≃r (sym≃ l≃l')
 
 trans≃ : Transitive _≃_
 trans≃ ≃lf t≃t'' = t≃t''

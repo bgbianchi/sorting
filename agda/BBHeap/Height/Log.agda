@@ -24,7 +24,7 @@ lemma-height-≃ (≃nd _ _ _ _ _ _ l≃l') rewrite lemma-height-≃ l≃l' = re
 
 lemma-height'-≃ : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ≃ r → height' l ≡ height' r
 lemma-height'-≃ ≃lf = refl
-lemma-height'-≃ (≃nd _ _ _ _ l≃r l'≃r' l≃l') rewrite lemma-height'-≃ (trans≃ (trans≃ (symm≃ l≃r) l≃l') l'≃r') = refl
+lemma-height'-≃ (≃nd _ _ _ _ l≃r l'≃r' l≃l') rewrite lemma-height'-≃ (trans≃ (trans≃ (sym≃ l≃r) l≃l') l'≃r') = refl
 
 lemma-height-height'-⋗ : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ⋗ r → height l ≡ succ (height' r)
 lemma-height-height'-⋗ (⋗lf _) = refl
@@ -60,14 +60,14 @@ lemma-height-height' (right _ l⋙r)
 lemma-#-≃ : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ≃ r → # l ≡ # r
 lemma-#-≃ ≃lf = refl
 lemma-#-≃ (≃nd _ _ _ _ l≃r l'≃r' l≃l') 
-                   rewrite lemma-#-≃ (symm≃ l≃r) 
+                   rewrite lemma-#-≃ (sym≃ l≃r) 
                             | lemma-#-≃ l≃l' 
                             | lemma-#-≃ l'≃r' = refl
                    
 lemma-#-⋗ : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ⋗ r → # l ≡ succ (# r + # r)
 lemma-#-⋗ (⋗lf _) = refl
 lemma-#-⋗ (⋗nd _ _ _ _ l≃r l'≃r' l⋗l') 
-                   rewrite  lemma-#-≃ (symm≃ l≃r) 
+                   rewrite  lemma-#-≃ (sym≃ l≃r) 
                             | lemma-#-⋗ l⋗l' 
                             | lemma-#-≃ l'≃r' = refl
 
@@ -75,7 +75,7 @@ lemma-⋘-# : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ⋘ r → # r �
 lemma-⋘-# lf⋘ = refl≤′
 lemma-⋘-# (ll⋘ {r' = r'} _ _ l⋘r _ l'≃r' r≃l') 
                    rewrite lemma-#-≃ r≃l' 
-                             | lemma-#-≃ l'≃r' = lemma-s≤′s (+-right-monotony-≤′ (# r') (lemma-≡-≤′ (lemma-#-≃ (symm≃ (trans≃ r≃l' l'≃r'))) (lemma-⋘-# l⋘r))) 
+                             | lemma-#-≃ l'≃r' = lemma-s≤′s (+-right-monotony-≤′ (# r') (lemma-≡-≤′ (lemma-#-≃ (sym≃ (trans≃ r≃l' l'≃r'))) (lemma-⋘-# l⋘r))) 
 lemma-⋘-# (lr⋘ {r = r} {r' = r'} _ _ _ _ l'≃r' l⋗l') 
                    rewrite lemma-#-⋗ l⋗l' 
                              | lemma-#-≃ l'≃r' = lemma-s≤′s (≤′-step (lemma-m≤′m+n (# r' + # r') (# r)))
@@ -83,12 +83,12 @@ lemma-⋘-# (lr⋘ {r = r} {r' = r'} _ _ _ _ l'≃r' l⋗l')
 lemma-#-⋙ : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ⋙ r → # l ≤′ succ (# r + # r)  
 lemma-#-⋙ (⋙lf _) = refl≤′
 lemma-#-⋙ (⋙rl {l' = l'}{r' = r'} _ _ _ l≃r l'⋘r' l⋗r') 
-                   rewrite lemma-#-≃ (symm≃ l≃r) 
+                   rewrite lemma-#-≃ (sym≃ l≃r) 
                              | lemma-#-⋗ l⋗r' 
                              | +-assoc-succ (# r' + # r') (# r' + # r') 
                              | +-assoc-succ (# l' + # r') (# l' + # r') = lemma-s≤′s (lemma-s≤′s (lemma-s≤′s (lemma-4m≤′n+m+n+m (lemma-⋘-# l'⋘r'))))
 lemma-#-⋙ (⋙rr {l' = l'} {r' = r'} _ _ _ l≃r _ l≃l') 
-                   rewrite lemma-#-≃ (symm≃ l≃r) 
+                   rewrite lemma-#-≃ (sym≃ l≃r) 
                              | lemma-#-≃ l≃l' 
                              | +-assoc-succ (# l' + # r') (# l' + # r') = lemma-s≤′s (≤′-step (≤′-step (lemma-2m≤′m+n+m+n (# l') (# r'))))
 
@@ -96,18 +96,18 @@ mutual
   lemma-⋙-# : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ⋙ r → # r ≤′ # l
   lemma-⋙-# (⋙lf _) = ≤′-step refl≤′
   lemma-⋙-# (⋙rl {r' = r'} _ _ _ l≃r l'⋘r' l⋗r') 
-                   rewrite lemma-#-≃ (symm≃ l≃r) 
+                   rewrite lemma-#-≃ (sym≃ l≃r) 
                              | lemma-#-⋗ l⋗r' = lemma-s≤′s (trans≤′ (+-right-monotony-≤′ (# r') (lemma-#-⋘ l'⋘r')) (lemma-s≤′s (+-left-monotony-≤′ (# r' + # r') (≤′-step (lemma-n≤′2n (# r'))))))
   lemma-⋙-# (⋙rr {l' = l'} {r' = r'} _ _ _ l≃r l'⋙r' l≃l') 
-                   rewrite lemma-#-≃ (symm≃ l≃r) 
+                   rewrite lemma-#-≃ (sym≃ l≃r) 
                              | lemma-#-≃ l≃l' 
                              | +-comm (# l') (# r') = lemma-s≤′s (+-right-monotony-≤′ (# l') (lemma-⋙-# l'⋙r'))
 
   lemma-#-⋘ : {b b' : Bound}{l : BBHeap b}{r : BBHeap b'} → l ⋘ r → # l ≤′ succ (# r + # r)
   lemma-#-⋘ lf⋘ = ≤′-step refl≤′
   lemma-#-⋘ (ll⋘ {r = r} _ _ l⋘r _ l'≃r' r≃l') 
-                   rewrite lemma-#-≃ (symm≃ l'≃r') 
-                             | lemma-#-≃ (symm≃ r≃l') 
+                   rewrite lemma-#-≃ (sym≃ l'≃r') 
+                             | lemma-#-≃ (sym≃ r≃l') 
                              | +-assoc-succ (# r + # r) (# r + # r) 
                              | +-assoc-left (# r + # r) (# r) (# r) = lemma-s≤′s (≤′-step (trans≤′ (+-right-monotony-≤′ (# r) (lemma-#-⋘ l⋘r)) (lemma-s≤′s (lemma-m≤′m+n ((# r + # r) + # r) (# r)))))
   lemma-#-⋘ (lr⋘ {r' = r'} _ _ l⋙r _ l'≃r' l⋗l') 
