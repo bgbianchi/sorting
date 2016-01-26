@@ -13,8 +13,12 @@ Formalization of some sorting algorithms in Agda
 
 ## Source files ##
 - **agda\BBHeap\Complete\*** - Dependent binary heaps are complete trees
+- **agda\BBHeap\Drop.agda** - Root deletion on dependent binary heaps
+- **agda\BBHeap\DropLast.agda** - Deletion of the last inserted element on dependent binary heaps
 - **agda\BBHeap\Height\*** - Height related proofs for dependent binary heaps
 - **agda\BBHeap\Heap.agda** - Dependent binary heaps have the heap property
+- **agda\BBHeap\Last.agda** - Getting the last inserted element on dependent binary heaps
+- **agda\BBHeap\Push.agda** - Root deletion followed by one insertion on dependent binary heaps
 - **agda\BHeap\Heap.agda** - Dependent ordinary heaps have the heap property
 - **agda\BHeap\Height.agda** - Height related proofs for dependent ordinary heaps
 - **agda\BHeap\Order.agda** - Accesibility for dependent ordinary heaps
