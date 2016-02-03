@@ -5,7 +5,7 @@ module BBHeap.Height.Log {A : Set}
                   (_≤_ : A → A → Set) 
                   (tot≤ : Total _≤_ ) where
 
-open import BBHeap _≤_ 
+open import BBHeap _≤_ hiding (#)
 open import BBHeap.Height _≤_ 
 open import BBHeap.Properties _≤_
 open import Bound.Lower A 

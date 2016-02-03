@@ -23,9 +23,9 @@ lemma-last-dropLast (perfect {l} {r} x cl cr l≃r)
 ... | node perfect x' l' r' | node perfect x'' l'' r'' | ≃nd .x' .x'' l'≃r' l''≃r'' l'≃l'' = 
                  let _l = node perfect x' l' r' ;
                       _r = node perfect x'' l'' r'' ;
-                      zxflfrd∼xflzfrd = ∼x /head (lemma++/ {last _r compound} {x ∷ flatten _l}) lemma-refl∼ ;
+                      zxflfrd∼xflzfrd = ∼x /head (lemma++/ {last _r compound} {x ∷ flatten _l}) refl∼ ;
                       xflzfrd∼xflfr = lemma++∼l {x ∷ flatten _l} (lemma-last-dropLast cr)
-                 in lemma-trans∼ zxflfrd∼xflzfrd xflzfrd∼xflfr
+                 in trans∼ zxflfrd∼xflzfrd xflzfrd∼xflfr
 lemma-last-dropLast (left {l} {r} x cl cr l⋘r)
     with l | r | l⋘r | lemma-dropLast-⋘ l⋘r
 ... | leaf | _ | () | _ 
@@ -73,18 +73,18 @@ lemma-last-dropLast (right {l} {r} x cl cr l⋙r)
 ... | inj₁ l⋙rd = 
                  let _l = node perfect x' l' r' ;
                       _r = node left x'' l'' r'' ;
-                      zxflfrd∼xflzfrd = ∼x /head (lemma++/ {last _r compound} {x ∷ flatten _l}) lemma-refl∼ ;
+                      zxflfrd∼xflzfrd = ∼x /head (lemma++/ {last _r compound} {x ∷ flatten _l}) refl∼ ;
                       xflzfrd∼xflfr = lemma++∼l {x ∷ flatten _l} (lemma-last-dropLast cr)
-                 in lemma-trans∼ zxflfrd∼xflzfrd xflzfrd∼xflfr
+                 in trans∼ zxflfrd∼xflzfrd xflzfrd∼xflfr
 ... | inj₂ ()
 lemma-last-dropLast (right x cl cr l⋙r) | node perfect x' l' r' | node right x'' l'' r'' | ⋙r .x' .x'' l'≃r' l''⋙r'' l'≃l'' 
     with lemma-dropLast-⋙ (⋙r x' x'' l'≃r' l''⋙r'' l'≃l'')
 ... | inj₁ l⋙rd = 
                  let _l = node perfect x' l' r' ;
                       _r = node right x'' l'' r'' ;
-                      zxflfrd∼xflzfrd = ∼x /head (lemma++/ {last _r compound} {x ∷ flatten _l}) lemma-refl∼ ;
+                      zxflfrd∼xflzfrd = ∼x /head (lemma++/ {last _r compound} {x ∷ flatten _l}) refl∼ ;
                       xflzfrd∼xflfr = lemma++∼l {x ∷ flatten _l} (lemma-last-dropLast cr)
-                 in lemma-trans∼ zxflfrd∼xflzfrd xflzfrd∼xflfr
+                 in trans∼ zxflfrd∼xflzfrd xflzfrd∼xflfr
 ... | inj₂ ()
 lemma-last-dropLast (right x cl cr l⋙r) | node left _ _ _ | _ | ⋙p ()
 lemma-last-dropLast (right x cl cr l⋙r) | node right _ _ _ | _ | ⋙p ()
@@ -96,9 +96,9 @@ lemma-dropLast-∼ (perfect {l} {r} x cl cr l≃r)
 ... | node perfect x' l' r' | node perfect x'' l'' r'' | ≃nd .x' .x'' l'≃r' l''≃r'' l'≃l'' =  
                  let _l = node perfect x' l' r' ;
                       _r = node perfect x'' l'' r'' ;
-                      zflfrd∼flzfrd = ∼x /head (lemma++/ {last _r compound} {flatten _l}) lemma-refl∼ ;
+                      zflfrd∼flzfrd = ∼x /head (lemma++/ {last _r compound} {flatten _l}) refl∼ ;
                       flzfrd∼flfr = lemma++∼l {flatten _l} (lemma-last-dropLast cr)
-                 in lemma-trans∼ zflfrd∼flzfrd flzfrd∼flfr
+                 in trans∼ zflfrd∼flzfrd flzfrd∼flfr
 lemma-dropLast-∼ (left {l} {r} x cl cr l⋘r)
     with l | r | l⋘r | lemma-dropLast-⋘ l⋘r
 ... | leaf | _ | () | _ 
@@ -145,18 +145,18 @@ lemma-dropLast-∼ (right {l} {r} x cl cr l⋙r)
 ... | inj₁ l⋙rd = 
                  let _l = node perfect x' l' r' ;
                       _r = node left x'' l'' r'' ;
-                      zflfrd∼flzfrd = ∼x /head (lemma++/ {last _r compound} {flatten _l}) lemma-refl∼ ;
+                      zflfrd∼flzfrd = ∼x /head (lemma++/ {last _r compound} {flatten _l}) refl∼ ;
                       flzfrd∼flfr = lemma++∼l {flatten _l} (lemma-last-dropLast cr)
-                 in lemma-trans∼ zflfrd∼flzfrd flzfrd∼flfr
+                 in trans∼ zflfrd∼flzfrd flzfrd∼flfr
 ... | inj₂ ()
 lemma-dropLast-∼ (right x cl cr l⋙r) | node perfect x' l' r' | node right x'' l'' r'' | ⋙r .x' .x'' l'≃r' l''⋙r'' l'≃l'' 
     with lemma-dropLast-⋙ (⋙r x' x'' l'≃r' l''⋙r'' l'≃l'')
 ... | inj₁ l⋙rd =
                  let _l = node perfect x' l' r' ;
                       _r = node right x'' l'' r'' ;
-                      zflfrd∼flzfrd = ∼x /head (lemma++/ {last _r compound} {flatten _l}) lemma-refl∼ ;
+                      zflfrd∼flzfrd = ∼x /head (lemma++/ {last _r compound} {flatten _l}) refl∼ ;
                       flzfrd∼flfr = lemma++∼l {flatten _l} (lemma-last-dropLast cr)
-                 in lemma-trans∼ zflfrd∼flzfrd flzfrd∼flfr
+                 in trans∼ zflfrd∼flzfrd flzfrd∼flfr
 ... | inj₂ ()
 lemma-dropLast-∼ (right x cl cr l⋙r) | node left _ _ _ | _ | ⋙p ()
 lemma-dropLast-∼ (right x cl cr l⋙r) | node right _ _ _ | _ | ⋙p ()

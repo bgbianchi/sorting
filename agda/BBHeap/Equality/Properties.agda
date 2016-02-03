@@ -4,7 +4,7 @@ module BBHeap.Equality.Properties {A : Set}(_≤_ : A → A → Set)  where
 
 open import BBHeap _≤_
 open import BBHeap.Equality _≤_
-open import Bound.Lower A 
+open import Bound.Lower A
 
 refl≈ : {b : Bound}{h : BBHeap b} → h ≈ h
 refl≈ {b} {leaf} = ≈leaf

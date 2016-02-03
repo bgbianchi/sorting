@@ -14,10 +14,10 @@ open import Relation.Binary.PropositionalEquality hiding ([_])
                 isPreorder =  record {
                                   isEquivalence = Relation.Binary.Setoid.isEquivalence (setoid (List A)) ;
                                   reflexive = reflexive-aux;
-                                  trans = lemma-trans∼
+                                  trans = trans∼
                                }
                 }
            where
              reflexive-aux : {i j : List A} → i ≡ j → i ∼ j
-             reflexive-aux {i = i} {j = .i} refl = lemma-refl∼
+             reflexive-aux {i = i} {j = .i} refl = refl∼
 

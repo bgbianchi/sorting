@@ -13,3 +13,4 @@ open DecTotalOrder decTotalOrder hiding (refl)
 +assoc : (m n : ℕ) → m + suc n ≡ suc (m + n)
 +assoc zero n = refl
 +assoc (suc m) n = cong suc (+assoc m n)
+

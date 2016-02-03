@@ -24,8 +24,8 @@ lemma-select∼ x (y ∙ ys)
 
 lemma-selectSort∼ : {ι : Size}(xs : SList A {ι}) → unsize A xs ∼ unsize A (selectSort xs)
 lemma-selectSort∼ snil = ∼[]
-lemma-selectSort∼ (x ∙ xs) = lemma-trans∼ (lemma-select∼ x xs) (∼x /head /head (lemma-selectSort∼ (proj₂ (select x xs))))
+lemma-selectSort∼ (x ∙ xs) = trans∼ (lemma-select∼ x xs) (∼x /head /head (lemma-selectSort∼ (proj₂ (select x xs))))
 
 theorem-selectSort∼ : (xs : List A) → xs ∼ unsize A (selectSort (size A xs))
-theorem-selectSort∼ xs = lemma-trans∼ (lemma-unsize-size A xs) (lemma-selectSort∼ (size A xs))
+theorem-selectSort∼ xs = trans∼ (lemma-unsize-size A xs) (lemma-selectSort∼ (size A xs))
 

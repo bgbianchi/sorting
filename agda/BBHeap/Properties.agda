@@ -1,7 +1,7 @@
 module BBHeap.Properties {A : Set}(_≤_ : A → A → Set) where
 
 open import BBHeap _≤_
-open import BBHeap.Complete _≤_
+open import BBHeap.Perfect _≤_
 open import Bound.Lower A 
 open import Bound.Lower.Order _≤_ 
 open import Data.Empty
@@ -66,10 +66,10 @@ lemma-⋘-⊥ b≤x b'≤x' l⋙r l'⋘r' l≃l' (lr⋘ .b≤x .b'≤x' .l⋙r .
     with lemma-≃-⊥ l≃l' l⋗l'
 ... | ()
 
-lemma-complete : {b b' : Bound}{h : BBHeap b}{h' : BBHeap b'} → h ⋘ h' → Complete h'
-lemma-complete lf⋘ = clf
-lemma-complete (ll⋘ b≤x b'≤x' l⋘l l'⋘l' l'≃r' r≃l') = cnd b'≤x' l'⋘l' l'≃r'
-lemma-complete (lr⋘ b≤x b'≤x' l⋙r l'⋘l' l'≃r' l⋗l') = cnd b'≤x' l'⋘l' l'≃r'
+lemma-perfect : {b b' : Bound}{h : BBHeap b}{h' : BBHeap b'} → h ⋘ h' → Perfect h'
+lemma-perfect lf⋘ = plf
+lemma-perfect (ll⋘ b≤x b'≤x' l⋘l l'⋘l' l'≃r' r≃l') = pnd b'≤x' l'⋘l' l'≃r'
+lemma-perfect (lr⋘ b≤x b'≤x' l⋙r l'⋘l' l'≃r' l⋗l') = pnd b'≤x' l'⋘l' l'≃r'
 
 
 

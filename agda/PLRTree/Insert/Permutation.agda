@@ -21,7 +21,7 @@ mutual
   lemma-insert-/ x leaf = [] , /head , ∼[]
   lemma-insert-/ x (perfect {l} {r} y cl _ l≃r) 
       with tot≤ x y | l | r | l≃r
-  ... | inj₁ x≤y | leaf | leaf | _  = y ∷ [] , /head , lemma-refl∼
+  ... | inj₁ x≤y | leaf | leaf | _  = y ∷ [] , /head , refl∼
   ... | inj₁ x≤y | leaf | node _ _ _ _ | () 
   ... | inj₁ x≤y | node perfect _ _ _ | leaf | ()
   ... | inj₁ x≤y | node perfect y' l' r' | node perfect y'' l'' r'' | _ = 
@@ -33,7 +33,7 @@ mutual
   ... | inj₁ x≤y | node perfect _ _ _ | node right _ _ _ | ()
   ... | inj₁ x≤y | node left _ _ _ | _ | () 
   ... | inj₁ x≤y | node right _ _ _ | _ | () 
-  ... | inj₂ y≤x | leaf | leaf | _  = y ∷ [] , /tail /head , lemma-refl∼
+  ... | inj₂ y≤x | leaf | leaf | _  = y ∷ [] , /tail /head , refl∼
   ... | inj₂ y≤x | leaf | node _ _ _ _ | ()
   ... | inj₂ y≤x | node perfect _ _ _ | leaf | ()
   ... | inj₂ y≤x | node perfect y' l' r' | node perfect y'' l'' r'' | _  
@@ -81,18 +81,18 @@ mutual
       with insert y r | lemma-insert-∼ y cr | lemma-insert-compound y r
   ... | node perfect y' l' r' | frᵢ∼yfr | compound =
                   let flfrᵢ∼flyfr = lemma++∼l {flatten l} frᵢ∼yfr ;
-                       flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head lemma-refl∼ ; 
-                       flfrᵢ∼yflfr = lemma-trans∼ flfrᵢ∼flyfr flyfr∼yflfr  
+                       flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head refl∼ ; 
+                       flfrᵢ∼yflfr = trans∼ flfrᵢ∼flyfr flyfr∼yflfr  
                   in flatten l ++ flatten (node perfect y' l' r') , /head , flfrᵢ∼yflfr 
   ... | node left y' l' r' | frᵢ∼yfr | compound = 
                   let flfrᵢ∼flyfr = lemma++∼l {flatten l} frᵢ∼yfr ;
-                       flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head lemma-refl∼ ; 
-                       flfrᵢ∼yflfr = lemma-trans∼ flfrᵢ∼flyfr flyfr∼yflfr  
+                       flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head refl∼ ; 
+                       flfrᵢ∼yflfr = trans∼ flfrᵢ∼flyfr flyfr∼yflfr  
                   in flatten l ++ flatten (node left y' l' r') , /head , flfrᵢ∼yflfr 
   ... | node right y' l' r' | frᵢ∼yfr | compound = 
                   let flfrᵢ∼flyfr = lemma++∼l {flatten l} frᵢ∼yfr ;
-                       flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head lemma-refl∼ ; 
-                       flfrᵢ∼yflfr = lemma-trans∼ flfrᵢ∼flyfr flyfr∼yflfr  
+                       flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head refl∼ ; 
+                       flfrᵢ∼yflfr = trans∼ flfrᵢ∼flyfr flyfr∼yflfr  
                   in flatten l ++ flatten (node right y' l' r') , /head , flfrᵢ∼yflfr 
   lemma-insert-/ x (right {l} {r} y _ cr _) | inj₂ y≤x 
       with insert x r | lemma-insert-/ x cr | lemma-insert-compound x r
@@ -168,19 +168,19 @@ mutual
   ... | inj₁ x≤y 
       with insert y r | lemma-insert-∼ y cr | lemma-insert-compound y r
   ... | node perfect _ _ _ | frᵢ∼yfr | compound = 
-                  let flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head lemma-refl∼ ;
+                  let flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head refl∼ ;
                        flfrᵢ∼flyfr = lemma++∼l {flatten l} frᵢ∼yfr ;
-                       flfrᵢ∼yflfr = lemma-trans∼ flfrᵢ∼flyfr flyfr∼yflfr
+                       flfrᵢ∼yflfr = trans∼ flfrᵢ∼flyfr flyfr∼yflfr
                   in ∼x /head /head flfrᵢ∼yflfr
   ... | node left _ _ _ | frᵢ∼yfr | compound = 
-                  let flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head lemma-refl∼ ;
+                  let flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head refl∼ ;
                        flfrᵢ∼flyfr = lemma++∼l {flatten l} frᵢ∼yfr ;
-                       flfrᵢ∼yflfr = lemma-trans∼ flfrᵢ∼flyfr flyfr∼yflfr
+                       flfrᵢ∼yflfr = trans∼ flfrᵢ∼flyfr flyfr∼yflfr
                   in ∼x /head /head flfrᵢ∼yflfr
   ... | node right _ _ _ | frᵢ∼yfr | compound = 
-                  let flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head lemma-refl∼ ;
+                  let flyfr∼yflfr = ∼x (lemma++/ {y} {flatten l}) /head refl∼ ;
                        flfrᵢ∼flyfr = lemma++∼l {flatten l} frᵢ∼yfr ;
-                       flfrᵢ∼yflfr = lemma-trans∼ flfrᵢ∼flyfr flyfr∼yflfr
+                       flfrᵢ∼yflfr = trans∼ flfrᵢ∼flyfr flyfr∼yflfr
                   in ∼x /head /head flfrᵢ∼yflfr
   lemma-insert-∼ x (right {l} {r} y _ cr _) | inj₂ y≤x 
       with insert x r | lemma-insert-/ x cr | lemma-insert-compound x r

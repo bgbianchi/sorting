@@ -25,12 +25,12 @@ lemma-swap*∼ x (y ∙ ys)
 
 lemma-bubbleSort∼ : {ι : Size}(xs : SList A {ι}) → unsize A xs ∼ unsize A (bubbleSort xs)
 lemma-bubbleSort∼ snil = ∼[]
-lemma-bubbleSort∼ (x ∙ xs) = lemma-trans∼ (lemma-swap*∼ x xs) (lemma-trans∼ (lemma-⊕∼ y (lemma-bubbleSort∼ ys)) (lemma-size-unsize y (bubbleSort ys)))
+lemma-bubbleSort∼ (x ∙ xs) = trans∼ (lemma-swap*∼ x xs) (trans∼ (lemma-⊕∼ y (lemma-bubbleSort∼ ys)) (lemma-size-unsize y (bubbleSort ys)))
                   where sxxs = swap* x xs
                         ys = proj₁ sxxs
                         y = proj₂ sxxs
 
 theorem-bubbleSort∼ : (xs : List A) → xs ∼ unsize A (bubbleSort (size A xs))
-theorem-bubbleSort∼ xs = lemma-trans∼ (lemma-unsize-size xs) (lemma-bubbleSort∼ (size A xs))
+theorem-bubbleSort∼ xs = trans∼ (lemma-unsize-size xs) (lemma-bubbleSort∼ (size A xs))
 
 

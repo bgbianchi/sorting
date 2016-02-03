@@ -10,6 +10,8 @@ open import BBHeap.Properties  _≤_
 open import Bound.Lower A 
 open import Bound.Lower.Order _≤_
 open import Bound.Lower.Order.Properties _≤_ trans≤
+open import List.Permutation.Base A
+open import List.Permutation.Base.Equivalence A
 
 subtyping⋘l : {b b' b'' : Bound}{h : BBHeap b}{h' : BBHeap b'}(b''≤b : LeB b'' b) → h ⋘ h' → subtyping b''≤b h ⋘ h' 
 subtyping⋘l b''≤b lf⋘ = lf⋘ 
@@ -52,5 +54,17 @@ subtyping⋗l b''≤b (⋗nd b≤x b'≤x' l⋘r l'⋘r' l≃r l'≃r' l⋗l') =
 subtyping⋗ : {b b' b'' b''' : Bound}{h : BBHeap b}{h' : BBHeap b'}(b''≤b : LeB b'' b)(b'''≤b' : LeB b''' b') → h ⋗ h' → subtyping b''≤b h ⋗ subtyping b'''≤b' h' 
 subtyping⋗ b''≤b b'''≤b' h⋗h' = subtyping⋗r b'''≤b' (subtyping⋗l b''≤b h⋗h')
 
+lemma-subtyping# : {b b' : Bound}(b'≤b : LeB b' b)(h : BBHeap b) → # (subtyping b'≤b h) ≡ # h 
+lemma-subtyping# b'≤b leaf = refl
+lemma-subtyping# b'≤b (left b≤x l⋘r) = refl
+lemma-subtyping# b'≤b (right b≤x l⋙r) = refl
 
+lemma-subtyping≡ : {b b' : Bound}(b'≤b : LeB b' b)(h : BBHeap b) → (flatten (subtyping b'≤b h)) ≡ flatten h
+lemma-subtyping≡ b'≤b leaf = refl
+lemma-subtyping≡ b'≤b (left {l = l} {r = r} b≤x l⋘r) rewrite lemma-subtyping≡ b≤x l | lemma-subtyping≡ b≤x r = refl
+lemma-subtyping≡ b'≤b (right {l = l} {r = r} b≤x l⋙r) rewrite lemma-subtyping≡ b≤x l | lemma-subtyping≡ b≤x r = refl
 
+lemma-subtyping∼ : {b b' : Bound}(b'≤b : LeB b' b)(h : BBHeap b) → flatten (subtyping b'≤b h) ∼ flatten h
+lemma-subtyping∼ b'≤b leaf = ∼[]
+lemma-subtyping∼ b'≤b (left b≤x l⋘r) = ∼x /head /head refl∼
+lemma-subtyping∼ b'≤b (right b≤x l⋙r) = ∼x /head /head refl∼

@@ -4,13 +4,13 @@ open import List.Permutation.Base A
 open import Data.List
 open import Data.Product renaming (_×_ to _∧_)
 
-lemma-refl∼ : {xs : List A} → xs ∼ xs
-lemma-refl∼ {[]}     = ∼[] 
-lemma-refl∼ {x ∷ xs} = ∼x /head /head lemma-refl∼
+refl∼ : {xs : List A} → xs ∼ xs
+refl∼ {[]}     = ∼[] 
+refl∼ {x ∷ xs} = ∼x /head /head refl∼
 
-lemma-sym∼ : {xs ys : List A} → xs ∼ ys → ys ∼ xs
-lemma-sym∼ ∼[] = ∼[] 
-lemma-sym∼ (∼x xs/x⟶xs' ys/x⟶ys' xs'∼ys') = ∼x ys/x⟶ys' xs/x⟶xs' (lemma-sym∼ xs'∼ys')
+sym∼ : {xs ys : List A} → xs ∼ ys → ys ∼ xs
+sym∼ ∼[] = ∼[] 
+sym∼ (∼x xs/x⟶xs' ys/x⟶ys' xs'∼ys') = ∼x ys/x⟶ys' xs/x⟶xs' (sym∼ xs'∼ys')
 
 lemma// : {x y : A}{xs ys zs : List A} → xs / x ⟶ ys → ys / y ⟶ zs → ∃ (λ ws → xs / y ⟶ ws ∧ ws / x ⟶ zs)
 lemma//  (/head {x = x}) (/head {xs = xs}) = x ∷ xs , /tail /head , /head
@@ -39,10 +39,10 @@ lemma∼/ u∷us∼ys (/tail us/x⟶xs')
     with lemma// ys/u⟶ys' ys'/x⟶vs
 ... | ws , ys/x⟶ws , ws/u⟶vs = ws , ys/x⟶ws , ∼x /head ws/u⟶vs xs'∼vs
 
-lemma-trans∼ : {xs ys zs : List A} → xs ∼ ys → ys ∼ zs → xs ∼ zs
-lemma-trans∼ ∼[] ∼[] = ∼[]
-lemma-trans∼ ∼[] (∼x .{xs = []} () zs/x⟶zs' ys'∼zs') 
-lemma-trans∼ {zs = zs} (∼x {ys = ys} xs/x⟶xs' ys/x⟶ys' xs'∼ys') ys∼zs 
+trans∼ : {xs ys zs : List A} → xs ∼ ys → ys ∼ zs → xs ∼ zs
+trans∼ ∼[] ∼[] = ∼[]
+trans∼ ∼[] (∼x .{xs = []} () zs/x⟶zs' ys'∼zs') 
+trans∼ {zs = zs} (∼x {ys = ys} xs/x⟶xs' ys/x⟶ys' xs'∼ys') ys∼zs 
     with lemma∼/ {xs = ys} ys∼zs ys/x⟶ys'
-... | _ , zs/x⟶us , ys'∼us = ∼x xs/x⟶xs' zs/x⟶us (lemma-trans∼ xs'∼ys' ys'∼us)
+... | _ , zs/x⟶us , ys'∼us = ∼x xs/x⟶xs' zs/x⟶us (trans∼ xs'∼ys' ys'∼us)
 

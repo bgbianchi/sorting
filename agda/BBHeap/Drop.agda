@@ -6,11 +6,11 @@ module BBHeap.Drop {A : Set}
                   (trans≤ : Transitive _≤_) where
 
 open import BBHeap _≤_
-open import BBHeap.Complete _≤_
 open import BBHeap.Compound _≤_
 open import BBHeap.Equality _≤_
 open import BBHeap.Equality.Properties _≤_
 open import BBHeap.Subtyping.Properties _≤_ trans≤
+open import BBHeap.Perfect _≤_
 open import BBHeap.Properties _≤_
 open import BBHeap.Push _≤_ tot≤ trans≤
 open import Bound.Lower A 
@@ -54,9 +54,9 @@ mutual
                           r'≈pr' = sym≈ pr'≈r' ;
                           r≈r' = ≈left x≤y₂ (lexy refl≤) l₂⋘r₂ l₂⋘r₂ refl≈ refl≈ ;
                           r≈pr' = trans≈ r≈r' r'≈pr' ;
-                          dl⋘r' = lemma⋘≈ dl⋘r r≈pr' ;
-                          dl'⋘r' = subtyping⋘l (lexy y₂≤y₁) dl⋘r'
-                     in left x≤y₂ dl'⋘r'
+                          dl⋘pr' = lemma⋘≈ dl⋘r r≈pr' ;
+                          dl'⋘pr' = subtyping⋘l (lexy y₂≤y₁) dl⋘pr'
+                     in left x≤y₂ dl'⋘pr'
   drop⋘ b≤x (lr⋘ {x = y₁} {x' = y₂} x≤y₁ x≤y₂ l₁⋙r₁ l₂⋘r₂ l₂≃r₂ l₁⋗l₂)
       with tot≤ y₁ y₂ | lemma-drop⋘ (cr x≤y₁ l₁⋙r₁) (cl x≤y₂ l₂⋘r₂) (lr⋘ x≤y₁ x≤y₂ l₁⋙r₁ l₂⋘r₂ l₂≃r₂ l₁⋗l₂)
   ... | _ | inj₁ (() , _)
@@ -69,9 +69,9 @@ mutual
                           r'≈pr' = sym≈ pr'≈r' ;
                           r≈r' = ≈left x≤y₂ (lexy refl≤) l₂⋘r₂ l₂⋘r₂ refl≈ refl≈ ;
                           r≈pr' = trans≈ r≈r' r'≈pr' ;
-                          dl⋘r' = lemma⋘≈ dl⋘r r≈pr' ;
-                          dl'⋘r' = subtyping⋘l (lexy y₂≤y₁) dl⋘r'
-                     in left x≤y₂ dl'⋘r'
+                          dl⋘pr' = lemma⋘≈ dl⋘r r≈pr' ;
+                          dl'⋘pr' = subtyping⋘l (lexy y₂≤y₁) dl⋘pr'
+                     in left x≤y₂ dl'⋘pr'
 
   drop⋙ : {b : Bound}{x : A}{l r : BBHeap (val x)}(b≤x : LeB b (val x)) → l ⋙ r → BBHeap (val x)
   drop⋙ b≤x (⋙lf x≤y) = left x≤y lf⋘
@@ -423,7 +423,7 @@ mutual
   lemma-drop-⊥ : {b : Bound}{x : A}{l r : BBHeap (val x)}(b≤x : LeB b (val x))(l⋘r : l ⋘ r) → drop (cl b≤x l⋘r) ⋘ (left b≤x l⋘r) → ⊥
   lemma-drop-⊥ _ lf⋘ ()
   lemma-drop-⊥ b≤x (ll⋘ {x = y₁} {x' = y₂} x≤y₁ x≤y₂ l₁⋘r₁ l₂⋘r₂ l₂≃r₂ r₁≃l₂) dxlr⋘xlr
-      with tot≤ y₁ y₂ | lemma-drop⋘ (cl x≤y₁ l₁⋘r₁) (cl x≤y₂ l₂⋘r₂) (ll⋘ x≤y₁ x≤y₂ l₁⋘r₁ l₂⋘r₂ l₂≃r₂ r₁≃l₂) | dxlr⋘xlr | lemma-complete dxlr⋘xlr
+      with tot≤ y₁ y₂ | lemma-drop⋘ (cl x≤y₁ l₁⋘r₁) (cl x≤y₂ l₂⋘r₂) (ll⋘ x≤y₁ x≤y₂ l₁⋘r₁ l₂⋘r₂ l₂≃r₂ r₁≃l₂) | dxlr⋘xlr | lemma-perfect dxlr⋘xlr
   ... | inj₁ y₁≤y₂ | inj₁ (l≃r , l⋙dr) | _dxlr⋘xlr | _ =
                          let l⋘r = ll⋘ x≤y₁ x≤y₂ l₁⋘r₁ l₂⋘r₂ l₂≃r₂ r₁≃l₂ ;
                               pl'≈l' = lemma-push⋘ (lexy y₁≤y₂) (lexy refl≤) l₁⋘r₁ ;
@@ -443,10 +443,10 @@ mutual
                               l≃l = trans≃ l≃r r≃l ;
                               l'≃l = lemma≈≃ l'≈l l≃l 
                          in lemma-⋘-⊥ x≤y₂ b≤x l'⋙dr l⋘r l'≃l _dxlr⋘xlr
-  ... | _ | inj₂ dl⋘r | _ | cnd .b≤x .(ll⋘ x≤y₁ x≤y₂ l₁⋘r₁ l₂⋘r₂ l₂≃r₂ r₁≃l₂) l≃r =
+  ... | _ | inj₂ dl⋘r | _ | pnd .b≤x .(ll⋘ x≤y₁ x≤y₂ l₁⋘r₁ l₂⋘r₂ l₂≃r₂ r₁≃l₂) l≃r =
                          let r≃l = sym≃ l≃r ;
                               dl⋘l = lemma-⋘-≃ dl⋘r r≃l
                          in lemma-drop-⊥ x≤y₁ l₁⋘r₁ dl⋘l
   lemma-drop-⊥ b≤x (lr⋘ x≤y₁ x≤y₂ l₁⋙r₁ l₂⋘r₂ l₂≃r₂ l₁⋗r₂) dxlr⋘xlr
-      with lemma-complete dxlr⋘xlr
-  ... | cnd .b≤x .(lr⋘ x≤y₁ x≤y₂ l₁⋙r₁ l₂⋘r₂ l₂≃r₂ l₁⋗r₂) () 
+      with lemma-perfect dxlr⋘xlr
+  ... | pnd .b≤x .(lr⋘ x≤y₁ x≤y₂ l₁⋙r₁ l₂⋘r₂ l₂≃r₂ l₁⋗r₂) () 

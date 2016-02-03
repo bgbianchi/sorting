@@ -1,7 +1,7 @@
 {-# OPTIONS --sized-types #-}
 module BBHeap.Height {A : Set}(_≤_ : A → A → Set) where
 
-open import BBHeap _≤_ 
+open import BBHeap _≤_ hiding (#)
 open import Bound.Lower A 
 open import Bound.Lower.Order _≤_
 open import SNat

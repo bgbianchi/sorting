@@ -30,11 +30,11 @@ lemma-deal {x = x} b≤x x≤t (cons y b≤y y≤t ys)
 
 lemma-quickSort : {ι : Size}{b t : Bound}(xs : SBList {ι} b t) → unbound xs ∼ forget (quickSort xs)
 lemma-quickSort (nil _) = ∼[]
-lemma-quickSort (cons x b≤x x≤t xs) =  lemma-trans∼ (lemma≈∼ (≈xr (lemma-deal b≤x x≤t xs))) (lemma++∼ (lemma-quickSort ys) (∼x /head /head (lemma-quickSort zs)))
+lemma-quickSort (cons x b≤x x≤t xs) =  trans∼ (lemma≈∼ (≈xr (lemma-deal b≤x x≤t xs))) (lemma++∼ (lemma-quickSort ys) (∼x /head /head (lemma-quickSort zs)))
                 where yszs = deal b≤x x≤t xs
                       ys = proj₁ yszs
                       zs = proj₂ yszs
 
 theorem-quickSort∼ : (xs : List A) → xs ∼ forget (quickSort (bound xs))
-theorem-quickSort∼ xs = lemma-trans∼ (lemma-unbound-bound xs) (lemma-quickSort (bound xs))
+theorem-quickSort∼ xs = trans∼ (lemma-unbound-bound xs) (lemma-quickSort (bound xs))
 
